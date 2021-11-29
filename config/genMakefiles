@@ -1,0 +1,79 @@
+#!/bin/bash
+
+
+#$1: path
+abs_path()
+{
+	pushd "$1" >/dev/null
+	[ $? -ne 0 ] && return 1;
+	pwd
+	popd >/dev/null
+}
+
+PJ_DIR=$(abs_path "$(dirname $0)/../")
+
+export PROJECT_DIR=${PJ_DIR}
+export PROJECT_BUILDOUT_DIR=${PROJECT_DIR}/buildout
+export PROJECT_CONFIG_DIR=${PROJECT_DIR}/config
+
+[ -d ${PROJECT_BUILDOUT_DIR} ] || mkdir -p ${PROJECT_BUILDOUT_DIR}
+
+echo "export PROJECT_DIR=${PROJECT_DIR}" > ${PROJECT_BUILDOUT_DIR}/dir.param
+echo "export PROJECT_BUILDOUT_DIR=${PROJECT_BUILDOUT_DIR}" >> ${PROJECT_BUILDOUT_DIR}/dir.param
+echo "export PROJECT_CONFIG_DIR=${PROJECT_CONFIG_DIR}" >> ${PROJECT_BUILDOUT_DIR}/dir.param
+
+echo ""
+echo "==================EVN SET==============="
+echo "PROJECT_DIR:"$PROJECT_DIR
+echo ""
+
+
+source ${PROJECT_DIR}/config/script/env_common.sh
+
+usage() {
+    echo "Usage: $0 <Product>"
+    exit 1
+}
+
+if [ $# -ne 1 ]
+then
+    usage $*
+fi
+
+#传入一个产品型号的参数
+PRODUCT_MODEL=$1
+
+ECHO "Run config $1........."
+
+#引用配置
+CONFIG_FILE=${PROJECT_DIR}/config/$1
+source $CONFIG_FILE
+
+
+ECHO "This Board chip is "${DEV_CHIP}
+ECHO "Cross compiler is "${PROJECT_CROSS_COMPILE}
+
+ECHO "PRODUCT_MODEL_NUMBER:"${PRODUCT_MODEL_NUMBER}
+ECHO " "
+
+#生成输出目录及cmake的Makefile
+#source ${PROJECT_DIR}/config/script/build_cmd.sh
+
+#生成out目录的Makefile
+OUT_DIR_MAKEFILE_PARAM=${PROJECT_BUILDOUT_DIR}/Makefile.param
+OUT_DIR_MAKEFILE=${PROJECT_BUILDOUT_DIR}/Makefile
+
+MAKEFILE_TAIL=${PROJECT_DIR}/config/Makefile.tail
+
+cat ${PROJECT_DIR}/buildout/dir.param > ${OUT_DIR_MAKEFILE_PARAM}
+#echo "export PROJECT_QT_QMAKE=${QT_QMAKE}" >> ${OUT_DIR_MAKEFILE_PARAM}
+echo "" >> ${OUT_DIR_MAKEFILE_PARAM}
+cat $CONFIG_FILE >> ${OUT_DIR_MAKEFILE_PARAM}
+echo "" >> ${OUT_DIR_MAKEFILE_PARAM}
+
+cat ${OUT_DIR_MAKEFILE_PARAM} > ${OUT_DIR_MAKEFILE}
+cat ${MAKEFILE_TAIL} >> ${OUT_DIR_MAKEFILE}
+
+echo "include ./buildout/Makefile" > ${PROJECT_DIR}/Makefile
+
+${PROJECT_DIR}/config/product/${PRODUCT_SCRIPT}.sh

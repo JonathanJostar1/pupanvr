@@ -1,39 +1,23 @@
 # PUPANVR
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+PUPANVR是一款开源的嵌入式NVR系统，旨在创建一款多平台，易用，稳定的NVR系统。
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+### NVR工程说明
+工程的配置，编译是参考Live555开源的方式写的，主要体现在根目录下的config文件夹.
+不过一些脚本是从其他芯片厂家的BSP里有拿进来用，如海思安防芯片里的一些脚本。
+注意环境是用的bash调试使用的，其他的环境没有测试和使用过。
 
 
-#### 特技
+### 目录说明
+├── app			主应用源代码目录
+├── config		不同型号产品配置目录
+├── doc			文档目录
+├── hardware		不同硬件对应的一些文档
+├── product		不同产品对应的一些文档
+└── tool			打包时一些工具会打包进去，放在这里
 
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+### 编译方式
+	1. 针对不同的产品，如硬件不同或业务不同，在config目录里编写一个配置文件;
+	2. 在工程目录下执行 ./config/genMakefiles P30 (P30是对应的一个产品配置文件名，config目录下)；
+	3. 在工程目录下直接执行ｍａｋｅ　ａｐｐ编译应用；

@@ -1,0 +1,34 @@
+DESTDIR ?= /home/${USER}/exports/$(DEV_CHIP)/app
+
+export PROJECT_APP_SOURCE_BUILD_DIR = $(PROJECT_BUILDOUT_DIR)/$(DEV_CHIP)/$(PRODUCT_MODEL)/app/build
+
+.PHONY:all install clean third_party  get_version app 
+all:
+	(cd $(PROJECT_APP_SOURCE_BUILD_DIR) && make)
+
+get_version:
+	(source $(PROJECT_CONFIG_DIR)/script/cmd_get_version.sh && cmd_get_git_version_number)
+	
+install:get_version
+	(cd $(PROJECT_APP_SOURCE_BUILD_DIR) && make install)
+		
+clean:
+	(cd $(PROJECT_APP_SOURCE_BUILD_DIR) && make clean )
+	
+app: get_version
+	[ -d $(PROJECT_APP_SOURCE_BUILD_DIR) ] || mkdir -p $(PROJECT_APP_SOURCE_BUILD_DIR)
+	pushd $(PROJECT_APP_SOURCE_BUILD_DIR); $(PROJECT_DIR)/config/script/build_cmd.sh;popd
+	pushd $(PROJECT_APP_SOURCE_BUILD_DIR);make ; make install;popd
+	make app_isntall
+
+third_party:
+	(cd $(PROJECT_DIR)/third_party/$(DEV_SDK) && ./build.sh)
+	
+app_isntall:
+	[ -d $(DESTDIR) ] || mkdir -p $(DESTDIR)
+	cp -rd $(PROJECT_APP_SOURCE_BUILD_DIR)/bin/*		$(DESTDIR)
+	
+pack:
+	
+pack_debug:
+	pushd $(PROJECT_DIR)/filesys/$(DEV_SDK); ./build_partions.sh; popd

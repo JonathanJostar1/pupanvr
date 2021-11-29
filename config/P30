@@ -1,0 +1,18 @@
+#定义交叉编译工具链
+export PROJECT_CROSS_COMPILE=arm-hisiv600-linux
+
+#定义芯片型号
+export DEV_CHIP=hi3536c
+export DEV_OS=LINUX
+export DEV_SDK=hi3536c
+
+#定义产品型号
+export PRODUCT_SCRIPT=normal
+#产品型号
+export PRODUCT_MODEL=P30
+export PRODUCT_BOARD=P30
+
+export PRODUCT_MODEL_NUMBER=PUPANVR
+
+export PROJECT_CFLAGS=""
+export PROJECT_CPPFLAGS=""
