@@ -2,6 +2,7 @@
 #include<unistd.h>
 
 #include "tlog.h"
+#include "TRecordManage.h"
 
 int sys_init()
 {
@@ -10,17 +11,20 @@ int sys_init()
 	LOG(INFO) << "初始化开始..." << endl;
 	/*配置初始化*/
 
+	return 0;
 }
 
 int main(int argc, char** argv)
 {
 	sys_init();
 
-	
+	TRecordManage::getInstance()->start();
+
 	while(1)
 	{
 		
 		sleep(1);
 	}
+
 	return 0;
 }

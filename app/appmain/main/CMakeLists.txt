@@ -5,6 +5,11 @@ INCLUDE_DIRECTORIES(
 )
 INCLUDE_DIRECTORIES(
 	../log
+	../utils
+	../modules
+	../config
+	../common
+	../record
 )
 
 LINK_DIRECTORIES(
@@ -16,6 +21,9 @@ ADD_EXECUTABLE(pupa_main
 )
 
 TARGET_LINK_LIBRARIES(pupa_main
+	record
+	modules
+	utils
 	log
 	-lglog
 	-lpthread

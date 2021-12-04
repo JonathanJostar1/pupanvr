@@ -4,15 +4,20 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/glog)
 
 INCLUDE_DIRECTORIES(
 	../log
+	../utils
+	../modules
+	../config
+	../common
 )
 
-SET(UTILS_SRC
-	VThreadBase.cpp	
-	TMutex.cpp
-	TMutexLocker.cpp
+SET(RECORD_SRC
+	TPlayView.cpp
+	TVideoChannel.cpp
+	TVideoSource.cpp
+	TRecordManage.cpp	
 )
 
 
-ADD_LIBRARY(utils STATIC 				
-	${UTILS_SRC}
+ADD_LIBRARY(record STATIC 				
+	${RECORD_SRC}
 )
