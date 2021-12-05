@@ -6,6 +6,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/glog)
 INCLUDE_DIRECTORIES(
 	../log
 	../utils
+	../appconfig
 )
 
 SET(MODULES_SRC

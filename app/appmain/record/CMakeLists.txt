@@ -6,7 +6,7 @@ INCLUDE_DIRECTORIES(
 	../log
 	../utils
 	../modules
-	../config
+	../appconfig
 	../common
 )
 

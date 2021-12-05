@@ -23,4 +23,5 @@ function pack_lib_install()
 	#TO-DO
 }
 
-source		glog/build_glog.sh
+source		glog/build.sh
+source		iniparser/build.sh

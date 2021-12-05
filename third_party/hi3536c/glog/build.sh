@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function make_glog()
+function make_build()
 {
 	ECHO ""
 	ECHO "=============build glog-0.3.5============="
@@ -30,4 +30,4 @@ function make_glog()
 	build_lib_end
 }
 
-make_glog
+make_build

@@ -37,7 +37,6 @@ void TRecordManage::process()
 {
 	while(!m_stop_flag)
 	{
-		LOG(INFO) << "hello world.....\n" << endl;
 		sleep(1);
 	}
 
