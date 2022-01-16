@@ -9,12 +9,11 @@
 
 TPlayView::TPlayView()
 {
-	// TODO Auto-generated constructor stub
 
 }
 
 TPlayView::~TPlayView()
 {
-	// TODO Auto-generated destructor stub
+
 }
 

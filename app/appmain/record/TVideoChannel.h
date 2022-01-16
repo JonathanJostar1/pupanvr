@@ -10,11 +10,20 @@
 #ifndef APPMAIN_RECORD_TVIDEOCHANNEL_H_
 #define APPMAIN_RECORD_TVIDEOCHANNEL_H_
 
+#include "TVideoSource.h"
+
 class TVideoChannel
 {
 public:
 	TVideoChannel();
 	virtual ~TVideoChannel();
+
+	int		getChannelValue();
+	void 	setChannelValue(int value);
+private:
+	int		m_channelValue;
+
+	TVideoSource*	m_videoSource;
 };
 
 #endif /* APPMAIN_RECORD_TVIDEOCHANNEL_H_ */

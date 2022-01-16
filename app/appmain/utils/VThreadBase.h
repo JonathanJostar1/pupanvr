@@ -10,6 +10,9 @@
 #ifndef APPMAIN_UTILS_VTHREADBASE_H_
 #define APPMAIN_UTILS_VTHREADBASE_H_
 
+#include "TMutex.h"
+#include "TMutexLocker.h"
+
 class VThreadBase
 {
 public:

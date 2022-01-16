@@ -35,7 +35,7 @@ string TAppComm::getAppBuildDataInfo()
     const char* Date = __DATE__;
     if(sscanf(Date, "%4s %d %d", buff1, &iday, &iyear) != 3)
     {
-        return false;
+        return "";
     }
 
     int i;
@@ -52,7 +52,7 @@ string TAppComm::getAppBuildDataInfo()
     int h = 0,m = 0,s = 0;
     if(sscanf(timeBuild, "%d:%d:%d", &h, &m, &s) != 3)
     {
-        return false;
+        return "";
     }
 
     char rltbuff[64];

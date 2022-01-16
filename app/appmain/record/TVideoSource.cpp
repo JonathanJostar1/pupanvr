@@ -7,14 +7,19 @@
 
 #include "TVideoSource.h"
 
-TVideoSource::TVideoSource()
+TVideoSource::TVideoSource(VideoSourceDevType type)
+	:m_videoSourceDevType(type)
 {
-	// TODO Auto-generated constructor stub
 
+}
+
+VideoSourceDevType TVideoSource::getVideoSourceType()
+{
+	return m_videoSourceDevType;
 }
 
 TVideoSource::~TVideoSource()
 {
-	// TODO Auto-generated destructor stub
+
 }
 

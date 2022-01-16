@@ -23,5 +23,10 @@ function pack_lib_install()
 	#TO-DO
 }
 
-source		glog/build.sh
-source		iniparser/build.sh
+#source		glog/build.sh
+#source		iniparser/build.sh
+#source		zlib/build_zlib.sh
+#source 	libpng/build_png.sh
+source 		harfbuzz/buid_harfbuzz.sh
+#source		freetype/build_libfreetype.sh
+#source		libjpeg/build_libjpeg.sh

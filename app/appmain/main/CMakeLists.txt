@@ -11,30 +11,46 @@ INCLUDE_DIRECTORIES(
 	../appconfig
 	../common
 	../record
+	../hal_media/include
+	../view
 )
 
 
 LINK_DIRECTORIES(
 	${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/lib	
+	${PROJECT_SOURCE_DIR}/appmain/bsp/${CHIP}/lib
+	
+	/home/jhting/disk2/code/third_party/lvgl
 )
 
 ADD_EXECUTABLE(pupa_main
 	main.cpp
 )
 
+
+set(HI3536C_MPP VoiceEngine upvqe tde mpi md ive hive_RNR hive_RES hive_MBC hive_HPF hive_HDR hive_EQ hive_common hive_ANR hive_AGC hive_AEC hdmi dnvqe aacdec aacenc jpeg jpeg6b) 
+
 TARGET_LINK_LIBRARIES(pupa_main
+	view
 	record
 	modules
+	halMedia
 	appconfig
 	common
 	utils
+	${HI3536C_MPP}
 	log
+	-llvgl
+	-lpng
+	-ljpeg
+	-lz
 	-lglog
 	-liniparser
 	-lpthread
 	-lm
 	-ldl
 )
+
 
 
 INSTALL(TARGETS pupa_main RUNTIME DESTINATION bin)

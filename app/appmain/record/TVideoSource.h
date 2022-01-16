@@ -10,11 +10,16 @@
 #ifndef APPMAIN_RECORD_TVIDEOSOURCE_H_
 #define APPMAIN_RECORD_TVIDEOSOURCE_H_
 
+#include "sys_defines.h"
+
 class TVideoSource
 {
 public:
-	TVideoSource();
+	TVideoSource(VideoSourceDevType type);
+	VideoSourceDevType getVideoSourceType();
 	virtual ~TVideoSource();
+private:
+	VideoSourceDevType	m_videoSourceDevType;
 };
 
 #endif /* APPMAIN_RECORD_TVIDEOSOURCE_H_ */

@@ -10,6 +10,12 @@
 
 #include "TServiceBase.h"
 
+#include "TAppComm.h"
+#include "sys_defines.h"
+#include "TVideoChannel.h"
+
+#include<map>
+
 class TRecordManage: public TServiceBase
 {
 public:
@@ -19,9 +25,12 @@ private:
 	virtual ~TRecordManage();
 	void process();
 private:
-
+	bool	loadVideoChannel();
+	void	videoChannelFree();
 private:
-	static TRecordManage*	m_instance;
+	static TRecordManage*		m_instance;
+	map<int, TVideoChannel*>	m_channelMap;
+	TMutex						m_mutex;
 };
 
 #endif /* APPMAIN_RECORD_TRECORDMANAGE_H_ */

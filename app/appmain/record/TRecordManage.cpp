@@ -35,9 +35,42 @@ TRecordManage::~TRecordManage()
 
 void TRecordManage::process()
 {
+	loadVideoChannel();
+
 	while(!m_stop_flag)
 	{
 		sleep(1);
 	}
 
+}
+
+bool TRecordManage::loadVideoChannel()
+{
+	int videoCount = 5;
+	TMutexLocker locker(&m_mutex);
+	videoChannelFree();
+
+	TVideoChannel* videoChannel;
+	for(int i = 1; i < videoCount + 1; i++)
+	{
+		videoChannel = new TVideoChannel();
+		videoChannel->setChannelValue(i);
+		m_channelMap[i] = videoChannel;
+	}
+
+	return true;
+}
+
+void TRecordManage::videoChannelFree()
+{
+	map<int, TVideoChannel*>::iterator iter;
+	iter = m_channelMap.begin();
+	TVideoChannel* pVideoChannel = NULL;
+	while(iter != m_channelMap.end())
+	{
+		pVideoChannel = iter->second;
+		delete pVideoChannel;
+		m_channelMap.erase(iter);
+		iter++;
+	}
 }

@@ -7,6 +7,10 @@
 #include "TRecordManage.h"
 #include "git_log_version_number.h"
 
+#include "hal_media.h"
+#include "view_main.h"
+
+
 int sys_init()
 {
 	/**日记初始化*/
@@ -14,8 +18,8 @@ int sys_init()
 	LOG(INFO) << "系统初始化开始" << endl;
 
 	LOG(INFO) << "软件版本:" << TAppComm::getAppVersion() << endl;
-	LOG(INFO) << "编译信息:"<< TAppComm::getAppBuildDataInfo() << endl;
-	LOG(INFO) << "GIT信息:"<< TAppComm::getAppGitVersionInfo() << endl;
+	LOG(INFO) << "编译信息:" << TAppComm::getAppBuildDataInfo() << endl;
+	LOG(INFO) << "GIT信息:" << TAppComm::getAppGitVersionInfo() << endl;
 
 	/**配置初始化*/
 	TAppConfig::getInstance()->loadConfig();
@@ -26,14 +30,40 @@ int sys_init()
 
 int main(int argc, char** argv)
 {
-	sys_init();
+
+	int ret = 0;
+	ret = sys_init();
+	if(ret != 0)
+	{
+		LOG(ERROR) << "sys_init failure! ret:" << ret << endl;
+		return -1;
+	}
+
+	ret = hal_media_init();
+	if(ret != 0)
+	{
+		LOG(ERROR) << "hal_media_init failure!" << endl;
+		return -1;
+	}
 
 	/**启动录相系统管理服务*/
 	TRecordManage::getInstance()->start();
 
+	ret = view_init();
+	if(ret != 0)
+	{
+		LOG(ERROR) << "view_init failure!" << endl;
+		return -1;
+	}
+
+	ret = view_process();
+	{
+		LOG(ERROR) << "view_process failure!" << endl;
+		return -1;
+	}
+
 	while(1)
 	{
-		
 		sleep(1);
 	}
 
