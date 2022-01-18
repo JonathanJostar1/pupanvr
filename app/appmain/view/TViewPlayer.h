@@ -17,6 +17,10 @@ public:
 	virtual ~TViewPlayer();
 	void	setChannelValue(int chn);
 	int		getChannelValue();
+
+	void	setViewPlayerActive(bool flag);
+private:
+	void	event_process(lv_event_t * event);
 private:
 	ViewHandle	m_hitlabel;
 	int			m_chn;

@@ -1,0 +1,2 @@
+.. |github_link_base| replace:: https://github.com/lvgl/lvgl/blob/fatal: not a git repository (or any parent up to mount point /home/jhting)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set)./docs

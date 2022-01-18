@@ -5,11 +5,26 @@
  *      Author: jhting
  */
 
+#include<stdio.h>
+
 #include "TViewObject.h"
+#include "tlog.h"
+
 
 TViewObject::TViewObject()
 {
-	m_viewHandle = NULL;
+	m_viewHandle = lv_obj_create(lv_scr_act());
+	lv_obj_add_event_cb(m_viewHandle, _event_process, LV_EVENT_ALL, this);
+	lv_style_init(&m_style);
+	lv_obj_add_style(m_viewHandle, &m_style, 0);
+}
+
+TViewObject::TViewObject(ViewHandle parentHandle)
+{
+	m_viewHandle = lv_obj_create(parentHandle);
+	lv_obj_add_event_cb(m_viewHandle, _event_process, LV_EVENT_ALL, this);
+	lv_style_init(&m_style);
+	lv_obj_add_style(m_viewHandle, &m_style, 0);
 }
 
 TViewObject::~TViewObject()
@@ -57,6 +72,7 @@ bool TViewObject::viewShow()
 	return true;
 }
 
+
 bool TViewObject::viewHide()
 {
 	lv_obj_add_flag(m_viewHandle, LV_OBJ_FLAG_HIDDEN);
@@ -71,4 +87,15 @@ int TViewObject::getViewWidth()
 int TViewObject::getViewHeight()
 {
 	return lv_obj_get_height(m_viewHandle);
+}
+
+void TViewObject::event_process(lv_event_t *event)
+{
+
+}
+
+void TViewObject::_event_process(lv_event_t *event)
+{
+	TViewObject* obj = (TViewObject*)event->user_data;
+	obj->event_process(event);
 }

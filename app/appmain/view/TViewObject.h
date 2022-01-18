@@ -14,6 +14,7 @@ class TViewObject
 {
 public:
 	TViewObject();
+	TViewObject(ViewHandle parentHandle);
 	virtual ~TViewObject();
 	/**
 	 * 获取窗口对像句柄
@@ -32,8 +33,13 @@ public:
 
 	virtual bool 		viewShow();
 	virtual bool		viewHide();
+
+	virtual void		event_process(lv_event_t * event);
+private:
+	static void			_event_process(lv_event_t * event);
 protected:
 	ViewHandle m_viewHandle;
+	lv_style_t m_style;
 };
 
 #endif /* APPMAIN_APPMAIN_VIEW_TVIEWOBJECT_H_ */

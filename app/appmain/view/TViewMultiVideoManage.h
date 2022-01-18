@@ -34,6 +34,8 @@ public:
 
 	bool						setViewSpliteMode(ViewVideoPlayerSplitMode viewSpliteMode);
 	ViewVideoPlayerSplitMode 	getViewSpliteMode();
+
+	void						setCurrentSelectPlayView(int chn);
 private:
 	bool 						_setViewSpliteModeInit(ViewVideoPlayerSplitMode viewSpliteMode);
 	bool						_setViewShowMode(ViewVideoPlayerSplitMode viewSpliteMode);
@@ -41,7 +43,8 @@ private:
 	/*显示模式*/
 	ViewVideoPlayerSplitMode 	m_viewSpliteMode;
 
-	map<int, TViewPlayer*>			m_viewPlayerMap;
+	map<int, TViewPlayer*>		m_viewPlayerMap;
+	int							m_selectChnValue;
 };
 
 #endif /* APPMAIN_APPMAIN_VIEW_TVIEWMULTIVIDEOMANAGE_H_ */

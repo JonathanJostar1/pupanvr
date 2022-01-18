@@ -34,21 +34,15 @@ TViewMainWindow* TViewMainWindow::getInstance()
 
 TViewMainWindow::TViewMainWindow()
 {
-	static lv_style_t style;
-	lv_style_init(&style);
-
-	lv_style_set_border_width(&style, 0);
-	lv_style_set_radius(&style, 0);
-	lv_style_set_bg_color(&style, lv_palette_darken(LV_PALETTE_BLUE, 1));
-
+	lv_style_set_border_width(&m_style, 0);
+	lv_style_set_radius(&m_style, 0);
+	lv_style_set_bg_color(&m_style, lv_palette_darken(LV_PALETTE_BLUE, 1));
 
 	ViewHandle screen = lv_scr_act();
-	m_viewHandle = lv_obj_create(screen);
 
 	lv_obj_set_size(m_viewHandle, lv_obj_get_width(screen), lv_obj_get_height(screen));
 	lv_obj_refr_size(m_viewHandle);
 
-	lv_obj_add_style(m_viewHandle, &style, 0);
 
 	lv_obj_set_scrollbar_mode(m_viewHandle, LV_SCROLLBAR_MODE_OFF);
 
@@ -56,6 +50,7 @@ TViewMainWindow::TViewMainWindow()
 	lv_label_set_text(m_viewLabelHnd, "TViewMainWindow");
 	lv_obj_center(m_viewLabelHnd);
 
+#if 1
 	/*创建视频分割管理器*/
 	m_viewMultiVideoManage = new TViewMultiVideoManage(m_viewHandle);
 
@@ -66,9 +61,14 @@ TViewMainWindow::TViewMainWindow()
 
 	/*初始化分割模式*/
 	m_viewMultiVideoManage->setViewSpliteMode(View_Splite_mode_9);
-	//m_viewMultiVideoManage->viewHide();
+	m_viewMultiVideoManage->viewHide();
+#endif
 }
 
+TViewMultiVideoManage* TViewMainWindow::getViewMultiVideoManage()
+{
+	return m_viewMultiVideoManage;
+}
 
 TViewMainWindow::~TViewMainWindow()
 {

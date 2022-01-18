@@ -4,9 +4,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/glog)
 
 INCLUDE_DIRECTORIES(
 	../log
-	
-	/home/jhting/disk2/code/third_party/lvgl/
-	/home/jhting/disk2/code/third_party/lvgl/lvgl
+	${PROJECT_SOURCE_DIR}/lvgl/
+	${PROJECT_SOURCE_DIR}/lvgl/lvgl
 )
 
 SET(VIEW_SRC

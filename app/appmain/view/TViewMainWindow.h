@@ -17,7 +17,7 @@ class TViewMainWindow: public TViewObject
 public:
 	static TViewMainWindow* getInstance();
 	bool 	init();
-
+	TViewMultiVideoManage* getViewMultiVideoManage();
 private:
 	TViewMainWindow();
 	virtual ~TViewMainWindow();

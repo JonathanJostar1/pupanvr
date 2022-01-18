@@ -13,25 +13,21 @@
 
 TViewMultiVideoManage::TViewMultiVideoManage(ViewHandle parentHandle)
 {
-	static lv_style_t style;
-	lv_style_init(&style);
+	m_selectChnValue = 0;
 
-	lv_style_set_border_width(&style, 0);
-	lv_style_set_radius(&style, 0);
-	lv_style_set_pad_top(&style, 0);
-	lv_style_set_pad_left(&style, 0);
-	lv_style_set_pad_bottom(&style, 0);
-	lv_style_set_pad_right(&style, 0);
-	lv_style_set_bg_color(&style, lv_palette_darken(LV_PALETTE_RED, 1));
+	lv_style_set_border_width(&m_style, 0);
+	lv_style_set_radius(&m_style, 0);
+	lv_style_set_pad_top(&m_style, 0);
+	lv_style_set_pad_left(&m_style, 0);
+	lv_style_set_pad_bottom(&m_style, 0);
+	lv_style_set_pad_right(&m_style, 0);
+	lv_style_set_bg_color(&m_style, lv_palette_darken(LV_PALETTE_RED, 1));
 
-
-	m_viewHandle = lv_obj_create(parentHandle);
 	m_viewSpliteMode = View_Splite_Mode_UNKNOW;
 	/*根据产品路数，先初始化所有的通道的播放器*/
 	_setViewSpliteModeInit(View_Splite_mode_16);
 
 	lv_obj_set_scrollbar_mode(m_viewHandle, LV_SCROLLBAR_MODE_OFF);
-	lv_obj_add_style(m_viewHandle, &style, 0);
 }
 
 TViewMultiVideoManage::~TViewMultiVideoManage()
@@ -69,6 +65,41 @@ bool TViewMultiVideoManage::_setViewSpliteModeInit(
 	}
 
 	return true;
+}
+
+void TViewMultiVideoManage::setCurrentSelectPlayView(int chn)
+{
+	int index = -1;
+	index = m_selectChnValue - 1;
+	TViewPlayer* pViewPlayer = NULL;
+	if(index >= 0)
+	{
+#if 0
+		if(m_viewPlayerMap.(index))
+		{
+
+		}
+#endif
+
+		pViewPlayer = m_viewPlayerMap[index];
+		if(pViewPlayer)
+		{
+			pViewPlayer->setViewPlayerActive(false);
+		}
+
+		m_selectChnValue = -1;
+	}
+
+	m_selectChnValue = chn;
+	index = m_selectChnValue - 1;
+	if(index >= 0)
+	{
+		pViewPlayer = m_viewPlayerMap[index];
+		if(pViewPlayer)
+		{
+			pViewPlayer->setViewPlayerActive(true);
+		}
+	}
 }
 
 bool TViewMultiVideoManage::_setViewShowMode(

@@ -20,7 +20,7 @@ LINK_DIRECTORIES(
 	${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/lib	
 	${PROJECT_SOURCE_DIR}/appmain/bsp/${CHIP}/lib
 	
-	/home/jhting/disk2/code/third_party/lvgl
+	${PROJECT_SOURCE_DIR}/lvgl/lib
 )
 
 ADD_EXECUTABLE(pupa_main
@@ -40,6 +40,7 @@ TARGET_LINK_LIBRARIES(pupa_main
 	utils
 	${HI3536C_MPP}
 	log
+	-llv_drivers
 	-llvgl
 	-lpng
 	-ljpeg
