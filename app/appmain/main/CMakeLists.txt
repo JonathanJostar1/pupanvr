@@ -40,6 +40,7 @@ TARGET_LINK_LIBRARIES(pupa_main
 	utils
 	${HI3536C_MPP}
 	log
+	-llv_demos
 	-llv_drivers
 	-llvgl
 	-lpng

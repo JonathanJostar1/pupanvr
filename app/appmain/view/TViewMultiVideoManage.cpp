@@ -11,10 +11,9 @@
 #include "TViewMultiVideoManage.h"
 #include "TViewPlayer.h"
 
-TViewMultiVideoManage::TViewMultiVideoManage(ViewHandle parentHandle)
+TViewMultiVideoManage::TViewMultiVideoManage(ViewHandle parentHandle): TViewObject(parentHandle)
 {
 	m_selectChnValue = 0;
-
 	lv_style_set_border_width(&m_style, 0);
 	lv_style_set_radius(&m_style, 0);
 	lv_style_set_pad_top(&m_style, 0);
@@ -153,4 +152,14 @@ bool TViewMultiVideoManage::_setViewShowMode(
 	}
 
 	return true;
+}
+
+
+void TViewMultiVideoManage::event_process(lv_event_t *event)
+{
+	if(event->code == LV_EVENT_CLICKED)
+	{
+		printf("123123123 chn[%d] clicked!!!\n", 1);
+	}
+
 }

@@ -10,7 +10,6 @@
 #include "hal_media.h"
 #include "view_main.h"
 
-
 int sys_init()
 {
 	/**日记初始化*/

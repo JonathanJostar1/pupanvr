@@ -39,6 +39,8 @@ public:
 private:
 	bool 						_setViewSpliteModeInit(ViewVideoPlayerSplitMode viewSpliteMode);
 	bool						_setViewShowMode(ViewVideoPlayerSplitMode viewSpliteMode);
+
+	void	event_process(lv_event_t * event);
 private:
 	/*显示模式*/
 	ViewVideoPlayerSplitMode 	m_viewSpliteMode;

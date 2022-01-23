@@ -29,6 +29,10 @@ TView_App::~TView_App()
 
 int TView_App::process()
 {
+#if 1
+
+	lv_demo_widgets();
+
 	TViewMainWindow* appMainWnd = TViewMainWindow::getInstance();
 
 	if(!appMainWnd->init())
@@ -37,6 +41,7 @@ int TView_App::process()
 		return -1;
 	}
 
+#endif
 	view_lvgl_process();
 
 	return 0;

@@ -40,7 +40,13 @@ uint32_t custom_tick_get(void)
 
 static int lv_indev_init()
 {
+	static lv_style_t style;
 	static lv_indev_drv_t indev_drv;
+
+
+    lv_style_init(&style);
+    lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
+
 	evdev_init();
 
     /*Register a mouse input device*/
@@ -49,9 +55,18 @@ static int lv_indev_init()
     indev_drv.read_cb = evdev_read;
     g_indev_mouse = lv_indev_drv_register(&indev_drv);
 
+#if 1
     /*Set cursor. For simplicity set a HOME symbol now.*/
     lv_obj_t * mouse_cursor = lv_img_create(lv_scr_act());
-    lv_img_set_src(mouse_cursor, LV_SYMBOL_SETTINGS);
+    lv_obj_add_style(mouse_cursor, &style, 0);
+    lv_img_set_src(mouse_cursor, LV_SYMBOL_SETTINGS); //0xf245
+#else
+    lv_obj_t* mouse_cursor = lv_label_create(lv_scr_act());
+    lv_obj_set_style_text_font(mouse_cursor, &fontawesome_webfont_16, 0);
+    lv_obj_add_style(mouse_cursor, &style, 0);
+    lv_label_set_text(mouse_cursor, "\x80");
+#endif
+
     lv_indev_set_cursor(g_indev_mouse, mouse_cursor);
 
 	return 0;

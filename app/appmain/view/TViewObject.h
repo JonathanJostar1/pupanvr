@@ -28,17 +28,23 @@ public:
 	 * 设置显示大小
 	 * */
 	virtual bool		setViewSize(int width, int height);
+
 	virtual int			getViewWidth();
+
 	virtual int 		getViewHeight();
 
 	virtual bool 		viewShow();
 	virtual bool		viewHide();
+	virtual bool		visiabled();
 
+	/*事件处理*/
 	virtual void		event_process(lv_event_t * event);
 private:
 	static void			_event_process(lv_event_t * event);
 protected:
+	/*LVGL的一个对像句柄*/
 	ViewHandle m_viewHandle;
+	/*LVGL的一个对像的基本样式*/
 	lv_style_t m_style;
 };
 

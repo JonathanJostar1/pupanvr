@@ -11,20 +11,23 @@
 #include "view_def.h"
 #include "TViewObject.h"
 #include "TViewMultiVideoManage.h"
+#include "TViewLogin.h"
 
 class TViewMainWindow: public TViewObject
 {
 public:
 	static TViewMainWindow* getInstance();
 	bool 	init();
-	TViewMultiVideoManage* getViewMultiVideoManage();
+	TViewMultiVideoManage* 	getViewMultiVideoManage();
+	TViewLogin*				getViewLogin();
 private:
-	TViewMainWindow();
+	TViewMainWindow(ViewHandle parentHandle);
 	virtual ~TViewMainWindow();
 
 private:
 	static TViewMainWindow* 	m_instance;
 	TViewMultiVideoManage*		m_viewMultiVideoManage;
+	TViewLogin*					m_viewLogin;
 	ViewHandle					m_viewLabelHnd;
 
 };

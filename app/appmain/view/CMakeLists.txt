@@ -9,6 +9,14 @@ INCLUDE_DIRECTORIES(
 )
 
 SET(VIEW_SRC
+	lvgl/SourceHanSerifSC_Regular_12.c
+	lvgl/SourceHanSerifSC_Regular_14.c
+	lvgl/SourceHanSerifSC_Regular_16.c
+	lvgl/SourceHanSerifSC_Regular_20.c
+	lvgl/fontawesome_webfont_12.c
+	lvgl/fontawesome_webfont_14.c
+	lvgl/fontawesome_webfont_16.c
+	lvgl/fontawesome_webfont_20.c
 	view_main.cpp
 	view_lvgl.cpp
 	TViewApp.cpp

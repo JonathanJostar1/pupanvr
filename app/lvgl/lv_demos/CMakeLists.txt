@@ -19,3 +19,9 @@ target_include_directories(lv_demos SYSTEM PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
                                                   ${LV_DEMO_CONF_DIR})
 
 target_link_libraries(lv_demos PUBLIC lvgl)
+
+
+install(
+  TARGETS lv_demos
+  ARCHIVE DESTINATION "${LIB_INSTALL_DIR}"
+  PUBLIC_HEADER DESTINATION "${INC_INSTALL_DIR}")
