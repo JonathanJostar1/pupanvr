@@ -13,7 +13,7 @@
 
 #include "view_lvgl.h"
 #include "TViewMainWindow.h"
-
+#include "TViewFontUtils.h"
 
 TViewPlayer::TViewPlayer(ViewHandle parentHandle): TViewObject(parentHandle)
 {
@@ -28,7 +28,9 @@ TViewPlayer::TViewPlayer(ViewHandle parentHandle): TViewObject(parentHandle)
 
 	m_hitlabel = lv_label_create(m_viewHandle);
 	lv_label_set_text(m_hitlabel, "TViewPlayer");
-	lv_obj_set_style_text_font(m_hitlabel, &SourceHanSerifSC_Regular_20, 0);
+	lv_ft_info_t *ftfont = TViewFontUtils::getInstance()->getFont("SourceHanSansCN-Regular.otf", 20, 0);
+	lv_obj_set_style_text_font(m_hitlabel, ftfont->font, 0);
+	//lv_obj_set_style_text_font(m_hitlabel, &SourceHanSerifSC_Regular_20, 0);
 	lv_obj_center(m_hitlabel);
 }
 

@@ -45,7 +45,7 @@ static int lv_indev_init()
 
 
     lv_style_init(&style);
-    lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
+    //lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
 
 	evdev_init();
 
@@ -98,15 +98,6 @@ int view_lvgl_init()
     lv_disp_drv_register(&disp_drv);
 
     lv_indev_init();
-
-    /*Create a Demo*/
-    //lv_demo_widgets();
-    //lv_demo_benchmark();
-    //lv_demo_keypad_encoder();
-    //lv_demo_music();
-    //lv_demo_stress();
-
-    //lv_example_arc_1();
 
     return 0;
 }

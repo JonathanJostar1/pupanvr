@@ -5,6 +5,9 @@
 
 using namespace std;
 
+#ifndef __TLOG_H__
+#define __TLOG_H__
+
 class TLog
 {
 public:
@@ -18,3 +21,5 @@ private:
 private:
     static TLog* m_instance;
 };
+
+#endif

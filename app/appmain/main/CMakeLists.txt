@@ -43,6 +43,7 @@ TARGET_LINK_LIBRARIES(pupa_main
 	-llv_demos
 	-llv_drivers
 	-llvgl
+	-lfreetype
 	-lpng
 	-ljpeg
 	-lz
