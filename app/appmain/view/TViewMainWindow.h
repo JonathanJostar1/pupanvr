@@ -12,6 +12,7 @@
 #include "TViewObject.h"
 #include "TViewMultiVideoManage.h"
 #include "TViewLogin.h"
+#include "TViewSysSetFrame.h"
 
 class TViewMainWindow: public TViewObject
 {
@@ -20,16 +21,19 @@ public:
 	bool 	init();
 	TViewMultiVideoManage* 	getViewMultiVideoManage();
 	TViewLogin*				getViewLogin();
+	
+	void					showMainSysMenuConfig();
 private:
 	TViewMainWindow(ViewHandle parentHandle);
 	virtual ~TViewMainWindow();
 
 private:
 	static TViewMainWindow* 	m_instance;
+	ViewHandle					m_viewLabelHnd;
+private:
 	TViewMultiVideoManage*		m_viewMultiVideoManage;
 	TViewLogin*					m_viewLogin;
-	ViewHandle					m_viewLabelHnd;
-
+	TViewSysSetFrame*			m_viewSysSetFrame;
 };
 
 #endif /* APPMAIN_APPMAIN_VIEW_TVIEWMAINWINDOW_H_ */

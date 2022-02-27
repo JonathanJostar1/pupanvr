@@ -19,8 +19,16 @@
 #include "accessdef.h"
 
 
-
 #define FONT_PATH  "/nfsroot/hi3536c/app/font"
+
+typedef struct{
+	ViewFontDef fontID;
+	char fontName[64];
+}StFontInfoDef;
+
+static StFontInfoDef gStFontInfoDef[] = {
+	{VF_FONT_DEFAULT,	"SourceHanSansCN-Regular.otf"}
+};
 
 TViewFontUtils* TViewFontUtils::m_instance = NULL;
 
@@ -33,6 +41,7 @@ TViewFontUtils* TViewFontUtils::getInstance()
 
 	return m_instance;
 }
+
 
 TViewFontUtils::TViewFontUtils()
 {
@@ -57,7 +66,7 @@ TViewFontUtils::~TViewFontUtils()
 	m_mutex.unlock();
 }
 
-lv_ft_info_t* TViewFontUtils::getFont(char *fontName, int size, int style)
+lv_ft_info_t* TViewFontUtils::_getFont(const char *fontName, int size, int style)
 {
 	string fontKeyName = "";
 	lv_ft_info_t* plvFtInfoObj = NULL;
@@ -69,11 +78,11 @@ lv_ft_info_t* TViewFontUtils::getFont(char *fontName, int size, int style)
 	plvFtInfoObj = _getFontByKeyname(fontKeyName);
 	if(plvFtInfoObj)
 	{
-		printf("_getFontByKeyname find:[%s]\n", fontKeyName.c_str());
+		//printf("_getFontByKeyname find:[%s]\n", fontKeyName.c_str());
 		return plvFtInfoObj;
 	}
 
-	printf("_getFontByKeyname not find:[%s]\n", fontKeyName.c_str());
+	//printf("_getFontByKeyname not find:[%s]\n", fontKeyName.c_str());
 	/*不存在时加载新的配置*/
 	char font_file[256];
 	snprintf(font_file, sizeof(font_file), "%s/%s", FONT_PATH, fontName);
@@ -99,7 +108,7 @@ lv_ft_info_t* TViewFontUtils::getFont(char *fontName, int size, int style)
 	return plvFtInfoObj;
 }
 
-bool TViewFontUtils::releaseFont(char *fontName, int size, int style)
+bool TViewFontUtils::_releaseFont(const char *fontName, int size, int style)
 {
 	string fontKeyName = "";
 
@@ -114,6 +123,54 @@ bool TViewFontUtils::releaseFont(char *fontName, int size, int style)
 	_delFontByKeyName(fontKeyName);
 
 	return true;
+}
+
+lv_font_t* TViewFontUtils::getViewFont(ViewFontDef type, int size, int style)
+{
+	const char* fontName = _getFontNameByViewFontDef(type);
+
+	if(!fontName)
+	{
+		return NULL;
+	}
+
+	lv_ft_info_t* ftInfo = _getFont(fontName, size, style);
+	if(!ftInfo)
+	{
+		return NULL;
+	}
+
+	return ftInfo->font;
+}
+
+lv_font_t* TViewFontUtils::getDefaultFont(int size, int style)
+{
+	const char* fontName = _getFontNameByViewFontDef(VF_FONT_DEFAULT);
+
+	if(!fontName)
+	{
+		return NULL;
+	}
+
+	lv_ft_info_t* ftInfo = _getFont(fontName, size, style);
+	if(!ftInfo)
+	{
+		return NULL;
+	}
+
+	return ftInfo->font;
+}
+
+void TViewFontUtils::releaseViewFont(ViewFontDef type, int size, int style)
+{
+	const char* fontName = _getFontNameByViewFontDef(type);
+
+	if(!fontName)
+	{
+		return;
+	}	
+
+	_releaseFont(fontName, size, style);	
 }
 
 string TViewFontUtils::_getFontMapKeyName(const char *fontName, int size, int style)
@@ -170,4 +227,19 @@ void TViewFontUtils::_delFontByKeyName(string &mapkeyName)
 		lv_ft_font_destroy(obj->font);
 		free(obj);
 	}
+}
+
+const char*		TViewFontUtils::_getFontNameByViewFontDef(ViewFontDef type)
+{
+	StFontInfoDef* pstFontInfoDef = NULL;
+	for(unsigned int i = 0; i < sizeof(gStFontInfoDef) / sizeof(gStFontInfoDef[0]); i++)
+	{
+		pstFontInfoDef = &gStFontInfoDef[i];		
+		if(pstFontInfoDef->fontID == type)
+		{
+			return pstFontInfoDef->fontName;
+		}
+	}
+
+	return NULL;
 }

@@ -249,17 +249,27 @@ void fbdev_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color
     lv_disp_flush_ready(drv);
 }
 
-void fbdev_get_sizes(uint32_t *width, uint32_t *height) {
+void fbdev_get_sizes(uint32_t *width, uint32_t *height, uint32_t *line_length) {
     if (width)
         *width = vinfo.xres;
 
     if (height)
         *height = vinfo.yres;
+
+    if(line_length)
+    {
+        *line_length = finfo.line_length;
+    }
 }
 
 void fbdev_set_offset(uint32_t xoffset, uint32_t yoffset) {
     vinfo.xoffset = xoffset;
     vinfo.yoffset = yoffset;
+}
+
+char* fbdev_get_framebufferMapAddr()
+{
+    return fbp;
 }
 
 /**********************

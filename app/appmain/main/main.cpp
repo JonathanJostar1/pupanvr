@@ -29,7 +29,6 @@ int sys_init()
 
 int main(int argc, char** argv)
 {
-
 	int ret = 0;
 	ret = sys_init();
 	if(ret != 0)

@@ -10,6 +10,7 @@
 
 #include "TViewObject.h"
 
+
 class TViewLogin: public TViewObject
 {
 public:
@@ -17,6 +18,8 @@ public:
 	virtual ~TViewLogin();
 private:
 	bool viewInit();
+	void		event_process(lv_event_t * event);
+	static void event_loginBtnOK_handler(lv_event_t* e);
 private:
 };
 

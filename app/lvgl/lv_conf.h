@@ -42,7 +42,7 @@
 #define LV_MEM_CUSTOM      0
 #if LV_MEM_CUSTOM == 0
 /*Size of the memory available for `lv_mem_alloc()` in bytes (>= 2kB)*/
-#  define LV_MEM_SIZE    (128U * 1024U)          /*[bytes]*/
+#  define LV_MEM_SIZE    (128U * 1024U * 10U)          /*[bytes]*/
 
 /*Set an address for the memory pool instead of allocating it as a normal array. Can be in external SRAM too.*/
 #  define LV_MEM_ADR          0     /*0: unused*/
@@ -389,6 +389,16 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #define LV_USE_DROPDOWN     1   /*Requires: lv_label*/
 
 #define LV_USE_IMG          1   /*Requires: lv_label*/
+
+#define LV_USE_PNG			1
+
+#define LV_USE_SJPG 		1
+
+#define LV_USE_FREETYPE		1
+
+#define LV_USE_GIF			1
+
+#define LV_USE_FS_POSIX 	'P'
 
 #define LV_USE_LABEL        1
 #if LV_USE_LABEL

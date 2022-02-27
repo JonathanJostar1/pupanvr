@@ -61,8 +61,13 @@ TViewMainWindow::TViewMainWindow(ViewHandle parentHandle): TViewObject(parentHan
 
 	m_viewMultiVideoManage->viewShow();
 
+
 	m_viewLogin = new TViewLogin(m_viewHandle);
-	//m_viewLogin->viewHide();
+	m_viewLogin->viewHide();
+
+	m_viewSysSetFrame = new TViewSysSetFrame(m_viewHandle);
+	m_viewSysSetFrame->viewHide();
+	
 }
 
 TViewMultiVideoManage* TViewMainWindow::getViewMultiVideoManage()
@@ -88,4 +93,13 @@ bool TViewMainWindow::init()
 TViewLogin* TViewMainWindow::getViewLogin()
 {
 	return m_viewLogin;
+}
+
+
+void TViewMainWindow::showMainSysMenuConfig()
+{
+	if(m_viewSysSetFrame)
+	{
+		m_viewSysSetFrame->viewShow();
+	}
 }

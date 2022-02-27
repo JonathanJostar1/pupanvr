@@ -37,8 +37,12 @@ public:
 	virtual bool		viewHide();
 	virtual bool		visiabled();
 
+
+	virtual lv_style_t*	getDefaultStyle();	
+
 	/*事件处理*/
 	virtual void		event_process(lv_event_t * event);
+
 private:
 	static void			_event_process(lv_event_t * event);
 protected:

@@ -11,9 +11,12 @@
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/lvgl.h"
 #include "lvgl/lv_port_indev.h"
+#include "lvgl/src/extra/libs/freetype/lv_freetype.h"
 #include "lv_drivers/display/fbdev.h"
 #include "lv_drivers/indev/evdev.h"
 #include "lv_demos/lv_demo.h"
+
+#include "view_lvgl_res.h"
 
 #if 1
 LV_FONT_DECLARE(SourceHanSerifSC_Regular_12)

@@ -32,6 +32,7 @@ set(HI3536C_MPP VoiceEngine upvqe tde mpi md ive hive_RNR hive_RES hive_MBC hive
 
 TARGET_LINK_LIBRARIES(pupa_main
 	view
+	viewLvglRes
 	record
 	modules
 	halMedia

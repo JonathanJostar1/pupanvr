@@ -10,6 +10,7 @@
 
 #include "view_lvgl.h"
 
+#include "THciBLLProcess.h"
 #include "TViewMainWindow.h"
 #include "TViewApp.h"
 #include "tlog.h"
@@ -30,9 +31,7 @@ TView_App::~TView_App()
 int TView_App::process()
 {
 #if 1
-
-	lv_demo_widgets();
-
+	THciBLLProcess::getInstance();
 	TViewMainWindow* appMainWnd = TViewMainWindow::getInstance();
 
 	if(!appMainWnd->init())

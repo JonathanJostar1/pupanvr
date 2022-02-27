@@ -104,3 +104,8 @@ bool TViewObject::visiabled()
 {
 	return (!lv_obj_has_flag(m_viewHandle, LV_OBJ_FLAG_HIDDEN));
 }
+
+lv_style_t*	TViewObject::getDefaultStyle()
+{
+	return &m_style;
+}

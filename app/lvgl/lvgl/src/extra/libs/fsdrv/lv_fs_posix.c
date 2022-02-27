@@ -15,6 +15,12 @@
 #ifndef WIN32
 #include <dirent.h>
 #include <unistd.h>
+
+#include <sys/types.h>
+#include <dirent.h>
+#include <stdlib.h>
+#include <errno.h>
+
 #else
 #include <windows.h>
 #endif
@@ -259,6 +265,9 @@ static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn)
     LV_UNUSED(drv);
 
 #ifndef WIN32
+    return LV_FS_RES_OK;
+#if 0
+    printf("=====================fs_dir_read=========failure!!!!!==================\n");
     struct dirent *entry;
     do {
         entry = readdir(dir_p);
@@ -269,6 +278,7 @@ static lv_fs_res_t fs_dir_read(lv_fs_drv_t * drv, void * dir_p, char * fn)
             strcpy(fn, "");
         }
     } while(strcmp(fn, "/.") == 0 || strcmp(fn, "/..") == 0);
+#endif
 #else
     strcpy(fn, next_fn);
 

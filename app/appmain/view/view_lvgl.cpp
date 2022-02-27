@@ -11,6 +11,8 @@
 #include <sys/time.h>
 
 #include "view_lvgl.h"
+#include "view_lvgl_res.h"
+#include "tlog.h"
 
 
 #define DISP_BUF_SIZE (128 * 1024)
@@ -43,9 +45,8 @@ static int lv_indev_init()
 	static lv_style_t style;
 	static lv_indev_drv_t indev_drv;
 
-
     lv_style_init(&style);
-    //lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
+    lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
 
 	evdev_init();
 
@@ -60,6 +61,7 @@ static int lv_indev_init()
     lv_obj_t * mouse_cursor = lv_img_create(lv_scr_act());
     lv_obj_add_style(mouse_cursor, &style, 0);
     lv_img_set_src(mouse_cursor, LV_SYMBOL_SETTINGS); //0xf245
+    //lv_obj_set_style_text_color(mouse_cursor, lv_color_hex(0xffffff));
 #else
     lv_obj_t* mouse_cursor = lv_label_create(lv_scr_act());
     lv_obj_set_style_text_font(mouse_cursor, &fontawesome_webfont_16, 0);
@@ -72,11 +74,21 @@ static int lv_indev_init()
 	return 0;
 }
 
+static void lv_log_print_g_cb_(const char * buf)
+{
+	LOG(INFO) << buf << endl;
+}
 
 int view_lvgl_init()
 {
     /*LittlevGL init*/
     lv_init();
+
+    //lv_log_register_print_cb(lv_log_print_g_cb_);
+
+    lv_extra_init();
+
+    view_lvgl_res_init();
 
     /*Linux frame buffer device init*/
     fbdev_init();
