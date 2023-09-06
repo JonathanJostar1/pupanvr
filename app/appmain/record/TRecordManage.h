@@ -14,12 +14,14 @@
 #include "sys_defines.h"
 #include "TVideoChannel.h"
 
+
 #include<map>
 
 class TRecordManage: public TServiceBase
 {
 public:
 	static TRecordManage* getInstance();
+	bool	sysRecordInit();
 private:
 	TRecordManage();
 	virtual ~TRecordManage();

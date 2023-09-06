@@ -15,8 +15,11 @@ extern "C"{
 int 	hal_media_init();
 void	hal_media_exit();
 
+
 int		hal_media_fbInit();
 void 	hal_media_fbexit();
+
+int     hal_media_get_framebufferInfo(char **fbp, void* pStVinfo, void* pStFixinfo);
 
 #ifdef __cplusplus
 }

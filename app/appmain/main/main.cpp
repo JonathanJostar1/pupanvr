@@ -3,7 +3,7 @@
 
 #include "tlog.h"
 #include "TAppComm.h"
-#include "TAppConfig.h"
+#include "TAppGlobalConfig.h"
 #include "TRecordManage.h"
 #include "git_log_version_number.h"
 
@@ -21,8 +21,8 @@ int sys_init()
 	LOG(INFO) << "GIT信息:" << TAppComm::getAppGitVersionInfo() << endl;
 
 	/**配置初始化*/
-	TAppConfig::getInstance()->loadConfig();
-
+	TAppGlobalConfig::getInstance()->load();
+	TAppGlobalConfig::getInstance()->save();
 
 	return 0;
 }
@@ -44,9 +44,15 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
+	if(!TRecordManage::getInstance()->sysRecordInit())
+	{
+		LOG(ERROR) << "sysRecordInit failure!" << endl;
+		return -1;
+	}
 	/**启动录相系统管理服务*/
 	TRecordManage::getInstance()->start();
 
+#if 1
 	ret = view_init();
 	if(ret != 0)
 	{
@@ -59,6 +65,7 @@ int main(int argc, char** argv)
 		LOG(ERROR) << "view_process failure!" << endl;
 		return -1;
 	}
+#endif
 
 	while(1)
 	{

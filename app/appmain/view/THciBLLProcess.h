@@ -1,6 +1,6 @@
 /*
  * THciBLLProcess.h
- *
+ *用户界面业务处理类
  *  Created on: 2022年2月26日
  *      Author: jhting
  */
@@ -12,9 +12,6 @@
 
 using namespace std;
 
-/*
- *
- */
 class THciBLLProcess
 {
 public:

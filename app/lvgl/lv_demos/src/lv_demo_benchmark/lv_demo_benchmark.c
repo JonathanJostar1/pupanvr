@@ -87,6 +87,9 @@ static void fall_anim(lv_obj_t * obj);
 static void rnd_reset(void);
 static int32_t rnd_next(int32_t min, int32_t max);
 
+
+extern void    view_lvgl_snap();
+
 static void rectangle_cb(void)
 {
     lv_style_reset(&style_common);
@@ -616,6 +619,7 @@ static uint32_t rnd_map[] = {
         0x35c7562b, 0xd901fe51, 0x8f4e053d, 0xa5b94923,
 };
 
+
 /**********************
  *      MACROS
  **********************/
@@ -861,6 +865,7 @@ static void scene_next_task_cb(lv_timer_t * timer)
 
 //        lv_page_set_scrl_layout(page, LV_LAYOUT_COLUMN_LEFT);
 
+        
     }
 }
 

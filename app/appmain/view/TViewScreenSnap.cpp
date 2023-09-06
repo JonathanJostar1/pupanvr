@@ -15,7 +15,7 @@ bool TViewScreenSnap::screenSnap(const char* pngFileName)
     unsigned int line_length = 0;
     unsigned int bit_depth = 8;
 
-    unsigned int i = 0;
+    //unsigned int i = 0;
     unsigned int k = 0;
     unsigned char *rawDataBuffer = NULL;
 
@@ -97,7 +97,7 @@ bool TViewScreenSnap::screenSnap(const char* pngFileName)
 
     png_write_info(png_ptr, info_ptr);
 
-    unsigned char* pRawRowData = (unsigned char*)framebufferDevAddr;
+    //unsigned char* pRawRowData = (unsigned char*)framebufferDevAddr;
 	for(k = 0; k < height; k++) 
     {
         #if 1

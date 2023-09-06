@@ -7,10 +7,9 @@
 
 #include "TVideoSource.h"
 
-TVideoSource::TVideoSource(VideoSourceDevType type)
-	:m_videoSourceDevType(type)
+TVideoSource::TVideoSource()
 {
-
+	m_videoSourceDevType = VS_TYPE_UNKNOW;
 }
 
 VideoSourceDevType TVideoSource::getVideoSourceType()

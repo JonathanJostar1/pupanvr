@@ -23,10 +23,12 @@ TViewMultiVideoManage::TViewMultiVideoManage(ViewHandle parentHandle): TViewObje
 	lv_style_set_bg_color(&m_style, lv_palette_darken(LV_PALETTE_RED, 1));
 
 	m_viewSpliteMode = View_Splite_Mode_UNKNOW;
+	
 	/*根据产品路数，先初始化所有的通道的播放器*/
 	_setViewSpliteModeInit(View_Splite_mode_16);
 
 	lv_obj_set_scrollbar_mode(m_viewHandle, LV_SCROLLBAR_MODE_OFF);
+	lv_obj_clear_flag(m_viewHandle, LV_OBJ_FLAG_SCROLLABLE);
 }
 
 TViewMultiVideoManage::~TViewMultiVideoManage()
@@ -69,6 +71,12 @@ bool TViewMultiVideoManage::_setViewSpliteModeInit(
 void TViewMultiVideoManage::setCurrentSelectPlayView(int chn)
 {
 	int index = -1;
+
+	if(chn == m_selectChnValue)
+	{
+		return;
+	}
+
 	index = m_selectChnValue - 1;
 	TViewPlayer* pViewPlayer = NULL;
 	if(index >= 0)

@@ -14,11 +14,18 @@
 #include "view_lvgl_res.h"
 #include "tlog.h"
 
+#include "evdev_linux.h"
+#include "halmedia_fbdev.h"
+
 
 #define DISP_BUF_SIZE (128 * 1024)
 
 
 static lv_indev_t* g_indev_mouse;
+
+//extern lv_img_dsc_t aero_arrow;
+//extern lv_img_dsc_t arrow_m;
+extern lv_img_dsc_t arrow_48;
 
 
 /*Set in lv_conf.h as `LV_TICK_CUSTOM_SYS_TIME_EXPR`*/
@@ -48,20 +55,20 @@ static int lv_indev_init()
     lv_style_init(&style);
     lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
 
-	evdev_init();
+	evdev_linux_init();
 
     /*Register a mouse input device*/
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_POINTER;
-    indev_drv.read_cb = evdev_read;
+    indev_drv.read_cb = evdev_linux_read;
     g_indev_mouse = lv_indev_drv_register(&indev_drv);
 
 #if 1
     /*Set cursor. For simplicity set a HOME symbol now.*/
     lv_obj_t * mouse_cursor = lv_img_create(lv_scr_act());
-    lv_obj_add_style(mouse_cursor, &style, 0);
-    lv_img_set_src(mouse_cursor, LV_SYMBOL_SETTINGS); //0xf245
-    //lv_obj_set_style_text_color(mouse_cursor, lv_color_hex(0xffffff));
+    //lv_obj_add_style(mouse_cursor, &style, 0);
+    lv_img_set_src(mouse_cursor, &arrow_48);
+    
 #else
     lv_obj_t* mouse_cursor = lv_label_create(lv_scr_act());
     lv_obj_set_style_text_font(mouse_cursor, &fontawesome_webfont_16, 0);
@@ -91,7 +98,7 @@ int view_lvgl_init()
     view_lvgl_res_init();
 
     /*Linux frame buffer device init*/
-    fbdev_init();
+    halmedia_fbdev_init();
 
     /*A small buffer for LittlevGL to draw the screen's content*/
     static lv_color_t buf[DISP_BUF_SIZE];
@@ -104,7 +111,7 @@ int view_lvgl_init()
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
     disp_drv.draw_buf   = &disp_buf;
-    disp_drv.flush_cb   = fbdev_flush;
+    disp_drv.flush_cb   = halmedia_fbdev_flush;
     disp_drv.hor_res    = 1920;
     disp_drv.ver_res    = 1080;
     lv_disp_drv_register(&disp_drv);
@@ -129,4 +136,3 @@ void	view_lvgl_process()
         usleep(5000);
     }
 }
-

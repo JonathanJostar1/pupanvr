@@ -32,6 +32,8 @@ TViewPlayer::TViewPlayer(ViewHandle parentHandle): TViewObject(parentHandle)
 	lv_font_t *ftfont = TViewFontUtils::getInstance()->getDefaultFont(30, 0);
 	lv_obj_set_style_text_font(m_hitlabel, ftfont, 0);
 	lv_obj_center(m_hitlabel);
+
+	lv_obj_add_event_cb(m_viewHandle, _event_process, LV_EVENT_ALL, this);
 }
 
 TViewPlayer::~TViewPlayer()
@@ -55,9 +57,11 @@ int TViewPlayer::getChannelValue()
 
 void TViewPlayer::event_process(lv_event_t *event)
 {
-	if(event->code == LV_EVENT_CLICKED)
+	//printf("TViewPlayer event->code: %d !\n", event->code);
+	if(event->code == LV_EVENT_RELEASED)
 	{
-		//printf("TViewPlayer chn[%d] clicked!!!\n", m_chn);
+		//printf("TViewPlayer chn[%d] clicked!!! event->code:%d\n", m_chn, event->code);
+#if 0
 		if(!THciBLLProcess::getInstance()->getLoginStatus())
 		{
 			if(!TViewMainWindow::getInstance()->getViewLogin()->visiabled())
@@ -69,13 +73,15 @@ void TViewPlayer::event_process(lv_event_t *event)
 
 			return;
 		}
-
+#endif
 		TViewMainWindow::getInstance()->getViewMultiVideoManage()->setCurrentSelectPlayView(m_chn);
 	}
+
 }
 
 void TViewPlayer::setViewPlayerActive(bool flag)
 {
+	//printf("setViewPlayerActive m_chn:%d flag:%d\n", m_chn, flag);
 	if(flag)
 	{
 		lv_style_set_border_color(&m_style, lv_color_hex(0xFFFFFF));

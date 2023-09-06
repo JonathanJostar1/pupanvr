@@ -7,6 +7,7 @@
 
 #include "TRecordManage.h"
 #include "tlog.h"
+#include "TAccount.h"
 
 #include<unistd.h>
 
@@ -33,10 +34,18 @@ TRecordManage::~TRecordManage()
 
 }
 
+bool TRecordManage::sysRecordInit()
+{
+	TAccount::getInstance();
+
+	return true;
+}
+
 void TRecordManage::process()
 {
+	
 	loadVideoChannel();
-
+	
 	while(!m_stop_flag)
 	{
 		sleep(1);

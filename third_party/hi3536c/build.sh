@@ -27,6 +27,8 @@ function pack_lib_install()
 #source		iniparser/build.sh
 #source		zlib/build_zlib.sh
 #source 	libpng/build_png.sh
-source 		harfbuzz/buid_harfbuzz.sh
+#source 		harfbuzz/buid_harfbuzz.sh
 #source		freetype/build_libfreetype.sh
+#source		openssl/build_openssl.sh
 #source		libjpeg/build_libjpeg.sh
+source		live555/build_live555.sh

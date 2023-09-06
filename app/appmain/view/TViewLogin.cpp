@@ -106,11 +106,7 @@ void TViewLogin::event_process(lv_event_t *event)
 void TViewLogin::event_loginBtnOK_handler(lv_event_t* e)
 {
 	TViewLogin* obj = (TViewLogin*)e->user_data;
-	//obj->viewHide();
 
-	TViewScreenSnap::screenSnap("/nfsroot/hi3536c/snap.png");
-
-	return;
 	if(!THciBLLProcess::getInstance()->login("admin", "admin"))
 	{
 		return;

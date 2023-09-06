@@ -53,3 +53,8 @@ void hal_media_fbexit()
 {
 	return;
 }
+
+int     hal_media_get_framebufferInfo(char **fbp, void* pStVinfo, void* pStFixinfo)
+{
+	return mpp_fb_get_framebufferInfo(fbp, pStVinfo, pStFixinfo);
+}

@@ -33,6 +33,7 @@ THciBLLProcess::~THciBLLProcess()
 
 bool THciBLLProcess::getLoginStatus()
 {
+	return false;
 	return m_userloginName.length() > 0;
 }
 

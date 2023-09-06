@@ -74,7 +74,7 @@ void 	mpp_vo_exit()
 {
 	VO_DEV VoDev;
 	VO_LAYER VoLayer;
-	VO_PUB_ATTR_S stVoPubAttr;
+	//VO_PUB_ATTR_S stVoPubAttr;
 
 	VoDev = SAMPLE_VO_DEV_DHD0;
 	VoLayer = SAMPLE_VO_DEV_DHD0;

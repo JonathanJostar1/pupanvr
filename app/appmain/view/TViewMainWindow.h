@@ -14,6 +14,9 @@
 #include "TViewLogin.h"
 #include "TViewSysSetFrame.h"
 
+/*
+ * 主界面管理类
+ * */
 class TViewMainWindow: public TViewObject
 {
 public:

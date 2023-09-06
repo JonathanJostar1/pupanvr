@@ -70,6 +70,6 @@ void 	mpp_vo_exit();
 
 int 	mpp_fb_init(int xRes, int yRes, int fbdevDoubleBufferMode);
 void 	mpp_fb_exit();
-
+int     mpp_fb_get_framebufferInfo(char **fbp, void* pStVinfo, void* pStFixinfo);
 
 #endif /* APPMAIN_APPMAIN_HAL_MEDIA_HI3536C_MPP_DEF_H_ */

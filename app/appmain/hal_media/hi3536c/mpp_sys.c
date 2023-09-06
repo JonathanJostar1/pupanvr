@@ -18,15 +18,16 @@ static int _mpp_sys_vb_init()
 {
 	int s32Ret = 0;
 	VB_CONF_S stVbConf;
-	HI_U32 u32BlkSize;
+	//HI_U32 u32BlkSize;
 	memset(&stVbConf,0,sizeof(VB_CONF_S));
 
-	int u32PicWidth = 1280;
-	int u32PicHeight = 720;
+	//int u32PicWidth = 1280;
+	//int u32PicHeight = 720;
 
-	u32BlkSize = CEILING_2_POWER(u32PicWidth,SAMPLE_SYS_ALIGN_WIDTH)\
+	/*
+	u32BlkSize = CEILING_2_POWER(u32PicWidth,SAMPLE_SYS_ALIGN_WIDTH)
 			* CEILING_2_POWER(u32PicHeight,SAMPLE_SYS_ALIGN_WIDTH) *2;
-
+	*/
 	stVbConf.u32MaxPoolCnt = VB_MAX_POOLS;
 
 	stVbConf.astCommPool[0].u32BlkSize = 1280*720*2;

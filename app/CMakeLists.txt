@@ -17,12 +17,11 @@ MESSAGE(STATUS "BOARD_SDK_DIR is " ${BOARD_SDK_DIR})
 MESSAGE(STATUS "BOARD_BSP_DIR is " ${BOARD_BSP_DIR})
 MESSAGE(STATUS "THIRD_PARTY_DIR is "${THIRD_PARTY_DIR})
 
-add_definitions(-O0 -g -Wall )
+add_definitions(-O0 -g -Wall -Werror -Wno-unused-function -Wno-unused-variable -Wno-narrowing )
 
 set(CMAKE_INSTALL_PREFIX ${PROJECT_BINARY_DIR})
 
 MESSAGE(STATUS "CMAKE_INSTALL_PREFIX is "${CMAKE_INSTALL_PREFIX})
-
 
 ADD_SUBDIRECTORY(appmain)
 #ADD_SUBDIRECTORY(lvgl)

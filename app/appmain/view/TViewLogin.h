@@ -1,6 +1,8 @@
 /*
  * TViewLogin.h
  *
+ * 用户登录界面
+ *
  *  Created on: 2021年12月26日
  *      Author: jhting
  */
@@ -9,7 +11,6 @@
 #define APPMAIN_APPMAIN_VIEW_TVIEWLOGIN_H_
 
 #include "TViewObject.h"
-
 
 class TViewLogin: public TViewObject
 {

@@ -1,6 +1,6 @@
 /*
  * TViewPlayer.h
- *
+ *	视频窗口类
  *  Created on: 2022年1月16日
  *      Author: jhting
  */

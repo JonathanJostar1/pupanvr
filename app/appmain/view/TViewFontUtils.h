@@ -22,6 +22,7 @@
 typedef enum{
 	VF_FONT_UNKNOW = 0,
 	VF_FONT_DEFAULT = 1,
+	VF_FONT_FontAwesome = 10,
 }ViewFontDef;
 
 /*

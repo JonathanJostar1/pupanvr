@@ -14,6 +14,7 @@ INCLUDE_DIRECTORIES(
 )
 
 SET(VIEW_SRC
+	res/arrow_48.c
 	view_main.cpp
 	view_lvgl.cpp
 	TViewScreenSnap.cpp

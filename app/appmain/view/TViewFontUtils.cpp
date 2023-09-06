@@ -18,6 +18,7 @@
 #include "TViewFontUtils.h"
 #include "accessdef.h"
 
+//#define FONT_PATH  "/var/nfsroot/mc6850/app/font"
 
 #define FONT_PATH  "/nfsroot/hi3536c/app/font"
 
@@ -27,7 +28,8 @@ typedef struct{
 }StFontInfoDef;
 
 static StFontInfoDef gStFontInfoDef[] = {
-	{VF_FONT_DEFAULT,	"SourceHanSansCN-Regular.otf"}
+	{VF_FONT_DEFAULT,	"SourceHanSansCN-Regular.otf"},
+	{VF_FONT_FontAwesome, "FontAwesome.otf"}
 };
 
 TViewFontUtils* TViewFontUtils::m_instance = NULL;

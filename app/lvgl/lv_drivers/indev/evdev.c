@@ -177,7 +177,7 @@ void evdev_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
                     evdev_button = LV_INDEV_STATE_REL;
                 else if(in.value == 1)
                     evdev_button = LV_INDEV_STATE_PR;
-            } else if(drv->type == LV_INDEV_TYPE_KEYPAD) {
+            } else if(drv->type == LV_INDEV_TYPE_KEYPAD || drv->type == LV_INDEV_TYPE_POINTER) {
 #if USE_XKB
                 data->key = xkb_process_key(in.code, in.value != 0);
 #else
@@ -232,7 +232,11 @@ void evdev_read(lv_indev_drv_t * drv, lv_indev_data_t * data)
         return;
     }
     if(drv->type != LV_INDEV_TYPE_POINTER)
+    {
+        data->key = evdev_key_val;
+        data->state = evdev_button;    
         return ;
+    }    
     /*Store the collected data*/
 
 #if EVDEV_CALIBRATE

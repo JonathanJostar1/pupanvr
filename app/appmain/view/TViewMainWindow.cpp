@@ -42,16 +42,17 @@ TViewMainWindow::TViewMainWindow(ViewHandle parentHandle): TViewObject(parentHan
 	lv_obj_refr_size(m_viewHandle);
 
 	lv_obj_set_scrollbar_mode(m_viewHandle, LV_SCROLLBAR_MODE_OFF);
+	lv_obj_clear_flag(m_viewHandle, LV_OBJ_FLAG_SCROLLABLE);
 
 	m_viewLabelHnd = lv_label_create(m_viewHandle);
 	lv_label_set_text(m_viewLabelHnd, "TViewMainWindow");
 	lv_obj_center(m_viewLabelHnd);
 
-
 	/*创建视频分割管理器*/
 	m_viewMultiVideoManage = new TViewMultiVideoManage(m_viewHandle);
 
 	m_viewMultiVideoManage->setViewSize(lv_obj_get_width(m_viewHandle), lv_obj_get_height(m_viewHandle));
+
 
 	printf("m_viewMultiVideoManage setViewSize %d %d\n", m_viewMultiVideoManage->getViewWidth(), m_viewMultiVideoManage->getViewHeight());
 	lv_obj_center(m_viewMultiVideoManage->getViewHandle());
@@ -61,13 +62,14 @@ TViewMainWindow::TViewMainWindow(ViewHandle parentHandle): TViewObject(parentHan
 
 	m_viewMultiVideoManage->viewShow();
 
-
+	/*创建登录界面*/
 	m_viewLogin = new TViewLogin(m_viewHandle);
 	m_viewLogin->viewHide();
 
+	/*创建配置菜单界面*/
 	m_viewSysSetFrame = new TViewSysSetFrame(m_viewHandle);
 	m_viewSysSetFrame->viewHide();
-	
+
 }
 
 TViewMultiVideoManage* TViewMainWindow::getViewMultiVideoManage()
@@ -102,4 +104,10 @@ void TViewMainWindow::showMainSysMenuConfig()
 	{
 		m_viewSysSetFrame->viewShow();
 	}
+}
+
+#include "TViewScreenSnap.h"
+void    view_lvgl_snap()
+{
+	TViewScreenSnap::screenSnap("/nfsroot/hi3536c/snap_test1.png");		
 }

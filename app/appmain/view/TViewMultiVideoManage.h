@@ -1,8 +1,10 @@
 /*
  * TViewMultiVideoManage.h
- *
+ *多视频窗管理器界面
  *  Created on: 2022年1月16日
  *      Author: jhting
+ * 
+ * 视频预览管理窗口
  */
 
 #ifndef APPMAIN_APPMAIN_VIEW_TVIEWMULTIVIDEOMANAGE_H_
@@ -23,18 +25,16 @@ typedef enum{
 	View_Splite_mode_16 = 16
 }ViewVideoPlayerSplitMode;
 
-/*
- *多视频窗管理器
- */
 class TViewMultiVideoManage: public TViewObject
 {
 public:
 	TViewMultiVideoManage(ViewHandle parentHandle);
 	virtual ~TViewMultiVideoManage();
-
+	/*设置分割模式*/
 	bool						setViewSpliteMode(ViewVideoPlayerSplitMode viewSpliteMode);
+	/*获取当前的分割模式*/
 	ViewVideoPlayerSplitMode 	getViewSpliteMode();
-
+	/*设置当前选中的通道*/
 	void						setCurrentSelectPlayView(int chn);
 private:
 	bool 						_setViewSpliteModeInit(ViewVideoPlayerSplitMode viewSpliteMode);
@@ -44,8 +44,9 @@ private:
 private:
 	/*显示模式*/
 	ViewVideoPlayerSplitMode 	m_viewSpliteMode;
-
+	/*记录各个播放窗口*/
 	map<int, TViewPlayer*>		m_viewPlayerMap;
+	/*记录当前选中的通道号*/
 	int							m_selectChnValue;
 };
 

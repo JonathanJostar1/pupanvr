@@ -494,3 +494,16 @@ void mpp_fb_exit()
 }
 
 
+int mpp_fb_get_framebufferInfo(char **fbp, void* pStVinfo, void* pStFixinfo)
+{
+	if(stHiG0Info.fd <= 0)
+	{
+		return -1;
+	}
+
+	*fbp = (char*)stHiG0Info.pShowScreen;
+	memcpy(pStVinfo, &stHiG0Info.var, sizeof(stHiG0Info.var));
+	memcpy(pStFixinfo, &stHiG0Info.fix, sizeof(stHiG0Info.fix));
+	return 0;
+}
+

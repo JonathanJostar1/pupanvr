@@ -8,6 +8,10 @@
 #ifndef APPMAIN_APPMAIN_VIEW_VIEW_LVGL_H_
 #define APPMAIN_APPMAIN_VIEW_VIEW_LVGL_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/lvgl.h"
 #include "lvgl/lv_port_indev.h"
@@ -44,5 +48,11 @@ void 	view_lvgl_exit();
  * */
 void	view_lvgl_process();
 
+void    view_lvgl_snap();
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* APPMAIN_APPMAIN_VIEW_VIEW_LVGL_H_ */

@@ -15,10 +15,10 @@
 class TVideoSource
 {
 public:
-	TVideoSource(VideoSourceDevType type);
+	TVideoSource();
 	VideoSourceDevType getVideoSourceType();
 	virtual ~TVideoSource();
-private:
+protected:
 	VideoSourceDevType	m_videoSourceDevType;
 };
 

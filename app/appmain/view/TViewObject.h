@@ -3,6 +3,8 @@
  *
  *  Created on: 2022年1月16日
  *      Author: jhting
+ * 
+ * 所有UI界面的父类，定义一些统一、基本的操作
  */
 
 #ifndef APPMAIN_APPMAIN_VIEW_TVIEWOBJECT_H_
@@ -43,7 +45,7 @@ public:
 	/*事件处理*/
 	virtual void		event_process(lv_event_t * event);
 
-private:
+protected:
 	static void			_event_process(lv_event_t * event);
 protected:
 	/*LVGL的一个对像句柄*/
