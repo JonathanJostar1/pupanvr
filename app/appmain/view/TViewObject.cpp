@@ -89,6 +89,16 @@ int TViewObject::getViewHeight()
 	return lv_obj_get_height(m_viewHandle);
 }
 
+int TViewObject::getX()
+{
+	return lv_obj_get_x(m_viewHandle);
+}
+
+int TViewObject::getY()
+{
+	return lv_obj_get_y(m_viewHandle);
+}
+
 void TViewObject::event_process(lv_event_t *event)
 {
 

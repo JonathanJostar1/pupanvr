@@ -15,7 +15,9 @@ extern "C" {
 
 //#include "lvgl/lvgl.h"
 
+//#define FBDEV_USE_HALMEDIA  1
 
+#ifdef FBDEV_USE_HALMEDIA
 void halmedia_fbdev_init(void);
 void halmedia_fbdev_exit(void);
 void halmedia_fbdev_flush(lv_disp_drv_t * drv, const lv_area_t * area, lv_color_t * color_p);
@@ -28,7 +30,7 @@ char* halmedia_fbdev_get_framebufferMapAddr();
  */
 void halmedia_fbdev_set_offset(uint32_t xoffset, uint32_t yoffset);
 
-
+#endif
 
 #ifdef __cplusplus
 } /* extern "C" */

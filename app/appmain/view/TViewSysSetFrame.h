@@ -4,7 +4,7 @@
 #include "TViewObject.h"
 
 /*
- * 系统配置界面
+ * 系统配置入口界面
  * */
 class TViewSysSetFrame: public TViewObject
 {

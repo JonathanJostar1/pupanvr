@@ -10,7 +10,11 @@
 #ifndef APPMAIN_APPMAIN_VIEW_TVIEWOBJECT_H_
 #define APPMAIN_APPMAIN_VIEW_TVIEWOBJECT_H_
 
+#include<string>
+
 #include "view_def.h"
+
+using namespace std;
 
 class TViewObject
 {
@@ -32,8 +36,9 @@ public:
 	virtual bool		setViewSize(int width, int height);
 
 	virtual int			getViewWidth();
-
 	virtual int 		getViewHeight();
+	virtual int			getX();
+	virtual	int			getY();
 
 	virtual bool 		viewShow();
 	virtual bool		viewHide();

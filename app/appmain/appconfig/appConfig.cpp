@@ -3,8 +3,6 @@
 #include "appConfig.h"
 
 
-
-
 const string AppConfig::AppConfigPath = "/nfsroot/hi3536c/config";
 
 AppConfig::AppConfig(const string& fileName)

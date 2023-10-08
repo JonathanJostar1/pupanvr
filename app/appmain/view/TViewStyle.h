@@ -1,7 +1,7 @@
-#include "TViewObject.h"
-
 #ifndef __TVIEWSTYLE_H__
 #define __TVIEWSTYLE_H__
+
+#include "TViewObject.h"
 
 class TViewStyle
 {

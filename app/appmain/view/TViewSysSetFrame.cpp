@@ -2,26 +2,52 @@
 #include "TViewStyle.h"
 #include "TViewFontUtils.h"
 
+#include "TViewConfigWinBaseFrame.h"
+
 typedef struct{
     int     menuItemID;
     char    menuItemText[256];
     char    menuItemImage[256];
     char    menuItemFontAwesome[10];
+    StViewConfigWinBaseFrameParamsItemInfo* itemConfigInfo;
 }StMainMenuItemInfo;
 
-StMainMenuItemInfo gStMainMenuItemInfoList[] = {
-    {1, "基本设置",     "",     "\uf2c3"},
-    {2, "通道管理",     "",     "\uf03d"},
-    {4, "录相回放",     "",     "\uf1c8"},
-    
-    {4, "存储管理",     "",     "\uf1c0"},
-    {5, "报警设置",     "",     "\uf071"},
-    
-    {6, "网络设置",     "",     "\uf26b"},
-    {7, "云平台",       "",     "\uf0ee"},
 
-    {8, "设备设置",     "",     "\uf085"},
+static StViewConfigWinBaseFrameParamsItemInfo testiteminfo[] = {
+    {"基本设置", NULL},
+    {"网络设置", NULL},
+    {"测试", NULL},
+    {"关于信息", NULL},
+    {"", NULL}
 };
+
+StMainMenuItemInfo gStMainMenuItemInfoList[] = {
+    {1, "基本设置",     "",     "\uf2c3", testiteminfo},
+    {2, "通道管理",     "",     "\uf03d", NULL},
+    {4, "录相回放",     "",     "\uf1c8", NULL},
+    
+    {4, "存储管理",     "",     "\uf1c0", NULL},
+    {5, "报警设置",     "",     "\uf071", NULL},
+    
+    {6, "网络设置",     "",     "\uf26b", NULL},
+    {7, "云平台",       "",     "\uf0ee", NULL},
+
+    {8, "设备设置",     "",     "\uf085", NULL},
+};
+
+
+static StMainMenuItemInfo* getMainMenuItemInfoByID(int id)
+{
+    for(unsigned int i = 0; i < sizeof(gStMainMenuItemInfoList) / sizeof(gStMainMenuItemInfoList[0]); i++)
+    {
+        if(gStMainMenuItemInfoList[i].menuItemID == id)
+        {
+            return &gStMainMenuItemInfoList[i];
+        }
+    }
+
+    return NULL;
+}
 
 TViewSysSetFrame::TViewSysSetFrame(ViewHandle parentHandle): TViewObject(parentHandle)
 {
@@ -157,14 +183,15 @@ void TViewSysSetFrame::_menuitem_event_process(lv_event_t *event)
 
 void TViewSysSetFrame::_menuitem_clicked_process(int id)
 {
-    printf("===============clicked==id:%d===============\n", id);
-    switch(id)
+    TViewConfigWinBaseFrame* win = NULL;
+
+    StMainMenuItemInfo* itemInfo = getMainMenuItemInfoByID(id);
+    if(itemInfo)
     {
-        case 1:
-            break;
-        case 2:
-            break;
-        default:
-            break;
+        win = new TViewConfigWinBaseFrame();
+        win->setViewConfigWinTitle(itemInfo->menuItemText);
+        win->setViewConfigWinBaseFrameParams(itemInfo->itemConfigInfo);
+        win->viewShow();
     }
+    
 }

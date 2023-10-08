@@ -16,7 +16,7 @@
 #include "TViewLogin.h"
 
 #include "TViewPlayer.h"
-
+#include "THciBLLProcess.h"
 
 
 TViewMainWindow* 	TViewMainWindow::m_instance = NULL;
@@ -58,7 +58,7 @@ TViewMainWindow::TViewMainWindow(ViewHandle parentHandle): TViewObject(parentHan
 	lv_obj_center(m_viewMultiVideoManage->getViewHandle());
 
 	/*初始化分割模式*/
-	m_viewMultiVideoManage->setViewSpliteMode(View_Splite_mode_9);
+	m_viewMultiVideoManage->setViewSpliteMode(View_Splite_mode_4);
 
 	m_viewMultiVideoManage->viewShow();
 
@@ -67,8 +67,21 @@ TViewMainWindow::TViewMainWindow(ViewHandle parentHandle): TViewObject(parentHan
 	m_viewLogin->viewHide();
 
 	/*创建配置菜单界面*/
+	m_viewSysSetFrame = NULL;
+	m_viewConfigMainWindow = NULL;
+#if 1
 	m_viewSysSetFrame = new TViewSysSetFrame(m_viewHandle);
 	m_viewSysSetFrame->viewHide();
+#else
+	m_viewConfigMainWindow = new TViewConfigMainWindow(m_viewHandle);
+	m_viewConfigMainWindow->setpos(0, 0);
+	m_viewConfigMainWindow->viewHide();
+#endif
+	m_viewPlayToolBar = new TViewPlayToolBar(m_viewHandle);
+	m_viewPlayToolBar->viewHide();
+
+	lv_obj_refr_size(m_viewHandle);
+
 
 }
 
@@ -86,6 +99,11 @@ TViewMainWindow::~TViewMainWindow()
 	}
 }
 
+void TViewMainWindow::event_process(lv_event_t * event)
+{
+	
+}
+
 
 bool TViewMainWindow::init()
 {
@@ -97,17 +115,98 @@ TViewLogin* TViewMainWindow::getViewLogin()
 	return m_viewLogin;
 }
 
+TViewPlayToolBar* TViewMainWindow::getViewPlayToolBar()
+{
+	return m_viewPlayToolBar;
+}
 
-void TViewMainWindow::showMainSysMenuConfig()
+
+void TViewMainWindow::showMainSysMenuConfig(bool trigger)
 {
 	if(m_viewSysSetFrame)
 	{
-		m_viewSysSetFrame->viewShow();
+		if(trigger)
+		{
+			if(m_viewSysSetFrame->visiabled())
+			{
+				m_viewSysSetFrame->viewHide();	
+			}else{
+				m_viewSysSetFrame->viewShow();	
+			}
+		}else{
+			m_viewSysSetFrame->viewShow();	
+		}
 	}
+
+	if(m_viewConfigMainWindow)
+	{
+		if(trigger)
+		{
+			if(m_viewConfigMainWindow->visiabled())
+			{
+				m_viewConfigMainWindow->viewHide();	
+			}else{
+				m_viewConfigMainWindow->viewShow();	
+			}
+		}else{
+			m_viewConfigMainWindow->viewShow();	
+		}
+	}
+}
+
+void TViewMainWindow::playViewClickProcess(TViewPlayer* obj, lv_event_t * event)
+{
+	if(event->code != LV_EVENT_RELEASED)
+	{
+		return;
+	}
+
+	if(m_viewConfigMainWindow)
+	{
+		if(m_viewConfigMainWindow->visiabled())
+		{
+			m_viewConfigMainWindow->viewHide();	
+			THciBLLProcess::getInstance()->loginout();
+			return;
+		}
+	}
+
+	if(m_viewSysSetFrame)
+	{
+		if(m_viewSysSetFrame->visiabled())
+		{
+			m_viewSysSetFrame->viewHide();
+			THciBLLProcess::getInstance()->loginout();
+			return;
+		}
+	}
+
+	//printf("TViewPlayer chn[%d] clicked!!! event->code:%d\n", m_chn, event->code);
+
+	if(!THciBLLProcess::getInstance()->getLoginStatus())
+	{
+		if(!TViewMainWindow::getInstance()->getViewLogin()->visiabled())
+		{
+			TViewMainWindow::getInstance()->getViewLogin()->viewShow();
+		}else{
+			TViewMainWindow::getInstance()->getViewLogin()->viewHide();
+		}
+
+		return;
+	}
+	
+	TViewMainWindow::getInstance()->getViewMultiVideoManage()->setCurrentSelectPlayView(obj->getChannelValue());
+	obj->showViewPlayToolBar();
+
 }
 
 #include "TViewScreenSnap.h"
 void    view_lvgl_snap()
 {
-	TViewScreenSnap::screenSnap("/nfsroot/hi3536c/snap_test1.png");		
+	if(!TViewScreenSnap::screenSnap("/nfsroot/hi3536c/snap_test1.png"))
+	{
+		printf("screen snap failure!\n");
+	}else{
+		printf("screen snap ok!\n");	
+	}
 }

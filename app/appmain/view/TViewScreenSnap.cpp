@@ -7,6 +7,7 @@
 
 #include "TViewScreenSnap.h"
 #include "view_lvgl.h"
+#include "halmedia_fbdev.h"
 
 bool TViewScreenSnap::screenSnap(const char* pngFileName)
 {
@@ -21,16 +22,28 @@ bool TViewScreenSnap::screenSnap(const char* pngFileName)
 
     FILE *fp = NULL;
 
+#ifdef FBDEV_USE_HALMEDIA
+    char* framebufferDevAddr = halmedia_fbdev_get_framebufferMapAddr();
+#else
     char* framebufferDevAddr = fbdev_get_framebufferMapAddr();
+#endif
+
     if(!framebufferDevAddr)
     {
+        printf("fbdev_get_framebufferMapAddr failure! framebufferDevAddr:%p\n", framebufferDevAddr);
         return false;
     }
 
+    
+#ifdef FBDEV_USE_HALMEDIA
+    halmedia_fbdev_get_sizes(&width, &height, &line_length);
+#else
     fbdev_get_sizes(&width, &height, &line_length);
+#endif
 
     if(width == 0 || height == 0 || line_length == 0)
     {
+        printf("fbdev_get_sizes failure!\n");
         return false;
     }
 

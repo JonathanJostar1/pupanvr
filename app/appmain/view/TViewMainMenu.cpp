@@ -7,7 +7,8 @@
 
 #include "TViewMainMenu.h"
 
-TViewMainMenu::TViewMainMenu()
+TViewMainMenu::TViewMainMenu(ViewHandle parentHandle)
+	:TViewObject(parentHandle)
 {
 	// TODO Auto-generated constructor stub
 

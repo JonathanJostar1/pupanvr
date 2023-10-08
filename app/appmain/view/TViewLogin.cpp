@@ -112,6 +112,7 @@ void TViewLogin::event_loginBtnOK_handler(lv_event_t* e)
 		return;
 	}
 
+	TViewMainWindow::getInstance()->showMainSysMenuConfig(true);
+
 	obj->viewHide();
-	TViewMainWindow::getInstance()->showMainSysMenuConfig();
 }

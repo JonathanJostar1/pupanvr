@@ -15,6 +15,7 @@
 #include "tlog.h"
 
 #include "evdev_linux.h"
+#include "evdev_tslib.h"
 #include "halmedia_fbdev.h"
 
 
@@ -51,17 +52,26 @@ static int lv_indev_init()
 {
 	static lv_style_t style;
 	static lv_indev_drv_t indev_drv;
+    static lv_indev_drv_t indev_drv_tslib;
 
     lv_style_init(&style);
     lv_style_set_text_color(&style, lv_color_hex(0xFFFFFF));
 
 	evdev_linux_init();
-
     /*Register a mouse input device*/
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_POINTER;
     indev_drv.read_cb = evdev_linux_read;
     g_indev_mouse = lv_indev_drv_register(&indev_drv);
+
+#if 0
+    evdev_tslib_init();
+
+    lv_indev_drv_init(&indev_drv_tslib);
+    indev_drv_tslib.type = LV_INDEV_TYPE_POINTER;
+    indev_drv_tslib.read_cb = evdev_tslib_read;
+    lv_indev_drv_register(&indev_drv_tslib);
+#endif
 
 #if 1
     /*Set cursor. For simplicity set a HOME symbol now.*/
@@ -98,7 +108,11 @@ int view_lvgl_init()
     view_lvgl_res_init();
 
     /*Linux frame buffer device init*/
+#ifdef FBDEV_USE_HALMEDIA
     halmedia_fbdev_init();
+#else
+    fbdev_init();
+#endif
 
     /*A small buffer for LittlevGL to draw the screen's content*/
     static lv_color_t buf[DISP_BUF_SIZE];
@@ -111,7 +125,11 @@ int view_lvgl_init()
     static lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
     disp_drv.draw_buf   = &disp_buf;
+#ifdef FBDEV_USE_HALMEDIA
     disp_drv.flush_cb   = halmedia_fbdev_flush;
+#else
+    disp_drv.flush_cb   = fbdev_flush;
+#endif
     disp_drv.hor_res    = 1920;
     disp_drv.ver_res    = 1080;
     lv_disp_drv_register(&disp_drv);

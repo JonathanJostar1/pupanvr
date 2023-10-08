@@ -3,9 +3,9 @@
 #ifndef __GIT_VERSION_NUMBER_H__
 #define __GIT_VERSION_NUMBER_H__
 
-#define GIT_COMMIT 	"822b313d8d84ce61234efcd7d31c3c00bbba0987"  
+#define GIT_COMMIT 	"ccf4b3e34ff0f6eb2208875ba9dbef64b5ab212a"  
 
-#define GIT_LOG_DATE 		"Sun Feb 27 21:12:20 2022 +0800"  
+#define GIT_LOG_DATE 		"Wed Sep 6 22:57:35 2023 +0800"  
 
 #define GIT_COMMIT_AUTH 	"jhting"  
 

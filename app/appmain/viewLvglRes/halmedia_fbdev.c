@@ -16,6 +16,8 @@
 #include "halmedia_fbdev.h"
 #include "hal_media.h"
 
+
+#ifdef FBDEV_USE_HALMEDIA
 #define FBDEV_PATH  "/dev/fb0"
 
 
@@ -171,3 +173,4 @@ char* halmedia_fbdev_get_framebufferMapAddr()
     return fbp;
 }
 
+#endif

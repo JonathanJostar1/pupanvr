@@ -10,6 +10,7 @@
 #include<unistd.h>
 
 #include "TViewPlayer.h"
+#include "TViewPlayToolBar.h"
 
 #include "view_lvgl.h"
 #include "TViewMainWindow.h"
@@ -57,26 +58,23 @@ int TViewPlayer::getChannelValue()
 
 void TViewPlayer::event_process(lv_event_t *event)
 {
-	//printf("TViewPlayer event->code: %d !\n", event->code);
+	
 	if(event->code == LV_EVENT_RELEASED)
 	{
-		//printf("TViewPlayer chn[%d] clicked!!! event->code:%d\n", m_chn, event->code);
-#if 0
-		if(!THciBLLProcess::getInstance()->getLoginStatus())
-		{
-			if(!TViewMainWindow::getInstance()->getViewLogin()->visiabled())
-			{
-				TViewMainWindow::getInstance()->getViewLogin()->viewShow();
-			}else{
-				TViewMainWindow::getInstance()->getViewLogin()->viewHide();
-			}
-
-			return;
-		}
-#endif
-		TViewMainWindow::getInstance()->getViewMultiVideoManage()->setCurrentSelectPlayView(m_chn);
+		printf("event code:%d\n", event->code);
+		TViewMainWindow::getInstance()->playViewClickProcess(this, event);
 	}
+}
 
+void TViewPlayer::showViewPlayToolBar()
+{
+	TViewPlayToolBar* toolbar = TViewMainWindow::getInstance()->getViewPlayToolBar();
+	
+	int x = this->getX();
+	int y = this->getY();
+
+	toolbar->setpos(x + (this->getViewWidth() - toolbar->getViewWidth()) / 2, y + this->getViewHeight() - toolbar->getViewHeight() - 25);	
+	toolbar->viewShow();
 }
 
 void TViewPlayer::setViewPlayerActive(bool flag)

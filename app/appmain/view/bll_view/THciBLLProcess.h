@@ -18,6 +18,7 @@ public:
 	static 	THciBLLProcess* getInstance();
 	bool	getLoginStatus();
 	bool	login(const char* username, const char* password);
+	void	loginout();
 private:
 	THciBLLProcess();
 	virtual ~THciBLLProcess();
@@ -26,6 +27,7 @@ private:
 	static THciBLLProcess*	m_instance;
 private:
 	string	m_userloginName;
+	bool	m_login_status;
 };
 
 #endif /* APPMAIN_APPMAIN_VIEW_THCIBLLPROCESS_H_ */

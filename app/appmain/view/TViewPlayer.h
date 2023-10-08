@@ -19,8 +19,10 @@ public:
 	int		getChannelValue();
 
 	void	setViewPlayerActive(bool flag);
+	void	showViewPlayToolBar();
 private:
 	void	event_process(lv_event_t * event);
+	
 private:
 	ViewHandle	m_hitlabel;
 	int			m_chn;

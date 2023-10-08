@@ -38,6 +38,9 @@ endif()
 
 set(LIVE555_LIBS liveMedia groupsock BasicUsageEnvironment UsageEnvironment)
 
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
+set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
+
 TARGET_LINK_LIBRARIES(pupa_main
 	view
 	viewLvglRes
@@ -51,6 +54,7 @@ TARGET_LINK_LIBRARIES(pupa_main
 	${BOARD_LIBS}
 	log
 	${LIVE555_LIBS}
+	-lts
 	-llv_demos
 	-llv_drivers
 	-llvgl

@@ -16,16 +16,13 @@ TViewMultiVideoManage::TViewMultiVideoManage(ViewHandle parentHandle): TViewObje
 	m_selectChnValue = 0;
 	lv_style_set_border_width(&m_style, 0);
 	lv_style_set_radius(&m_style, 0);
-	lv_style_set_pad_top(&m_style, 0);
-	lv_style_set_pad_left(&m_style, 0);
-	lv_style_set_pad_bottom(&m_style, 0);
-	lv_style_set_pad_right(&m_style, 0);
+	lv_style_set_pad_all(&m_style, 0);
 	lv_style_set_bg_color(&m_style, lv_palette_darken(LV_PALETTE_RED, 1));
 
 	m_viewSpliteMode = View_Splite_Mode_UNKNOW;
 	
 	/*根据产品路数，先初始化所有的通道的播放器*/
-	_setViewSpliteModeInit(View_Splite_mode_16);
+	_setViewSpliteModeInit(View_Splite_mode_9);
 
 	lv_obj_set_scrollbar_mode(m_viewHandle, LV_SCROLLBAR_MODE_OFF);
 	lv_obj_clear_flag(m_viewHandle, LV_OBJ_FLAG_SCROLLABLE);
@@ -153,7 +150,7 @@ bool TViewMultiVideoManage::_setViewShowMode(
 
 		x = i % cellItemCount * width;
 		y = i / cellItemCount * height;
-		printf("chn:%d viewPlayer x:%d y:%d width:%d height:%d\n", i + 1, x, y, width, height);
+		//printf("chn:%d viewPlayer x:%d y:%d width:%d height:%d\n", i + 1, x, y, width, height);
 		viewPlayer->setpos(x, y);
 		viewPlayer->setViewSize(width, height);
 		viewPlayer->viewShow();
@@ -167,7 +164,7 @@ void TViewMultiVideoManage::event_process(lv_event_t *event)
 {
 	if(event->code == LV_EVENT_CLICKED)
 	{
-		printf("123123123 chn[%d] clicked!!!\n", 1);
+
 	}
 
 }

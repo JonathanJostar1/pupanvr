@@ -8,10 +8,12 @@
 #ifndef APPMAIN_APPMAIN_VIEW_TVIEWMAINMENU_H_
 #define APPMAIN_APPMAIN_VIEW_TVIEWMAINMENU_H_
 
-class TViewMainMenu
+#include "TViewObject.h"
+
+class TViewMainMenu:public TViewObject
 {
 public:
-	TViewMainMenu();
+	TViewMainMenu(ViewHandle parentHandle);
 	virtual ~TViewMainMenu();
 };
 

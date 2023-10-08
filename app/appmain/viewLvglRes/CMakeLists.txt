@@ -23,6 +23,8 @@ SET(VIEW_LVGLRES
 	view_lvgl_res.c
 	evdev_linux.h
 	evdev_linux.c
+	evdev_tslib.h
+	evdev_tslib.c
 	halmedia_fbdev.h
 	halmedia_fbdev.c
 )
