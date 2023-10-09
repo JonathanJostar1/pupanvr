@@ -52,6 +52,8 @@ TARGET_LINK_LIBRARIES(dvs_app
 	${BOARD_LIBS}
 	log
 	${LIVE555_LIBS}
+	-ljsonrpcc
+	-lev
 	-lts
 	-llv_demos
 	-llv_drivers

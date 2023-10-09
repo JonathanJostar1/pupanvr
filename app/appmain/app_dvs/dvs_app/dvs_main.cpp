@@ -8,20 +8,24 @@
 #include "git_log_version_number.h"
 
 #include "hal_media.h"
+#include "TJsonRPCServerProcess.h"
 
 int sys_init()
 {
 	/**日记初始化*/
 	TLog::getInstance()->log_init("DVS_APP");
-	LOG(INFO) << "系统初始化开始" << endl;
+	LOG(INFO) << "DVS系统初始化开始" << endl;
 
-	LOG(INFO) << "软件版本:" << TAppComm::getAppVersion() << endl;
-	LOG(INFO) << "编译信息:" << TAppComm::getAppBuildDataInfo() << endl;
+	LOG(INFO) << "DVS软件版本:" << TAppComm::getAppVersion() << endl;
+	LOG(INFO) << "DVS编译信息:" << TAppComm::getAppBuildDataInfo() << endl;
 	LOG(INFO) << "GIT信息:" << TAppComm::getAppGitVersionInfo() << endl;
 
 	/**配置初始化*/
 	TDvsAppConfig::getInstance()->load();
 	TDvsAppConfig::getInstance()->save();
+
+	TJsonRPCServerProcess::getInstance()->setJsonRpcServerPort(55001);
+	TJsonRPCServerProcess::getInstance()->start();
 
 	return 0;
 }

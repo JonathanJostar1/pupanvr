@@ -16,6 +16,7 @@ function make_jsonrpc_c()
 		exit -1
 	fi
 	
+	cp ${PROJECT_DIR}/third_party/${DEV_CHIP}/jsonrpc-c/jsonrpc-c.h ${OUT_3RD_DIR}/obj/jsonrpc-c-master/include
 	if [ ! -d ${DST_FILE} ]
 	then
 		tar -zxf ${SRC_FILE} -C ${OUT_3RD_DIR}/obj

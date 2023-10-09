@@ -29,7 +29,6 @@ extern "C"
 {
 #endif
 
-
 #define JRPC_PARSE_ERROR -32700
 #define JRPC_INVALID_REQUEST -32600
 #define JRPC_METHOD_NOT_FOUND -32601
@@ -80,9 +79,9 @@ int jrpc_server_stop(struct jrpc_server *server);
 void jrpc_server_destroy(struct jrpc_server *server);
 
 int jrpc_register_procedure(struct jrpc_server *server,
-		jrpc_function function_pointer, const char *name, void *data);
+		jrpc_function function_pointer, char *name, void *data);
 
-int jrpc_deregister_procedure(struct jrpc_server *server, const char *name);
+int jrpc_deregister_procedure(struct jrpc_server *server, char *name);
 
 #ifdef __cplusplus
 }
