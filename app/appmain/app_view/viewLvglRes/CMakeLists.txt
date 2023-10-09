@@ -6,7 +6,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/freetype2)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/hal_media/include)
 
 INCLUDE_DIRECTORIES(
-	../log
+	../../log
 	${PROJECT_SOURCE_DIR}/lvgl/
 	${PROJECT_SOURCE_DIR}/lvgl/lvgl
 )

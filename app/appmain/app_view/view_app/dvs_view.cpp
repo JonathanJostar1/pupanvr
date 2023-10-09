@@ -4,7 +4,6 @@
 #include "tlog.h"
 #include "TAppComm.h"
 #include "TAppGlobalConfig.h"
-#include "TRecordManage.h"
 #include "git_log_version_number.h"
 
 #include "hal_media.h"
@@ -37,22 +36,15 @@ int main(int argc, char** argv)
 		return -1;
 	}
 
+#if 0
 	ret = hal_media_init();
 	if(ret != 0)
 	{
 		LOG(ERROR) << "hal_media_init failure!" << endl;
 		return -1;
 	}
+#endif
 
-	if(!TRecordManage::getInstance()->sysRecordInit())
-	{
-		LOG(ERROR) << "sysRecordInit failure!" << endl;
-		return -1;
-	}
-	/**启动录相系统管理服务*/
-	TRecordManage::getInstance()->start();
-
-#if 1
 	ret = view_init();
 	if(ret != 0)
 	{
@@ -64,12 +56,6 @@ int main(int argc, char** argv)
 	{
 		LOG(ERROR) << "view_process failure!" << endl;
 		return -1;
-	}
-#endif
-
-	while(1)
-	{
-		sleep(1);
 	}
 
 	return 0;

@@ -5,10 +5,10 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/freetype2)
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/libpng16)
 
 INCLUDE_DIRECTORIES(
-	bll_view
-	../log
-	../utils
+	../../log
+	../../utils
 	../viewLvglRes
+	bll_view
 	lvgl
 	${PROJECT_SOURCE_DIR}/lvgl/
 	${PROJECT_SOURCE_DIR}/lvgl/lvgl
@@ -50,6 +50,6 @@ SET(VIEW_SRC
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
 
-ADD_LIBRARY(view STATIC 				
-	${VIEW_SRC}
-)
+ADD_LIBRARY(view STATIC ${VIEW_SRC})
+
+

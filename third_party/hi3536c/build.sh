@@ -31,4 +31,6 @@ function pack_lib_install()
 #source		freetype/build_libfreetype.sh
 #source		openssl/build_openssl.sh
 #source		libjpeg/build_libjpeg.sh
-source		live555/build_live555.sh
+#source		live555/build_live555.sh
+#source		libev/build_libev.sh
+source		jsonrpc-c/build_jsonrpc-c.sh

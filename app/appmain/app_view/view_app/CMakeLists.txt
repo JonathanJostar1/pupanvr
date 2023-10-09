@@ -5,13 +5,11 @@ INCLUDE_DIRECTORIES(
 )
 
 INCLUDE_DIRECTORIES(
-	../log
-	../utils
-	../modules
-	../appconfig
-	../common
-	../record
-	../hal_media/include
+	../../log
+	../../utils
+	../../appconfig
+	../../common
+	../../hal_media/include
 	../view
 	../viewLvglRes
 )
@@ -19,15 +17,13 @@ INCLUDE_DIRECTORIES(
 
 LINK_DIRECTORIES(
 	${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/lib
-	${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/lib/live555	
 	${PROJECT_SOURCE_DIR}/appmain/bsp/${CHIP}/lib
 	${PROJECT_SOURCE_DIR}/lvgl/lib/${CHIP}
 )
 
-ADD_EXECUTABLE(pupa_main
-	main.cpp
+ADD_EXECUTABLE(dvs_view
+	dvs_view.cpp
 )
-
 
 if (${CHIP} STREQUAL "hi3536c")
 	set(BOARD_LIBS VoiceEngine upvqe tde mpi md ive hive_RNR hive_RES hive_MBC hive_HPF hive_HDR 
@@ -36,24 +32,18 @@ elseif((${CHIP} STREQUAL "mc6850"))
 	set(BOARD_LIBS mpi nna audio_codec) 
 endif()
 
-set(LIVE555_LIBS liveMedia groupsock BasicUsageEnvironment UsageEnvironment)
-
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-but-set-variable")
 
-TARGET_LINK_LIBRARIES(pupa_main
+TARGET_LINK_LIBRARIES(dvs_view
 	view
 	viewLvglRes
-	record
-	account
-	modules
 	appconfig
 	common
 	utils
-	halMedia
-	${BOARD_LIBS}
+	#halMedia
+	#${BOARD_LIBS}
 	log
-	${LIVE555_LIBS}
 	-lts
 	-llv_demos
 	-llv_drivers
@@ -63,7 +53,6 @@ TARGET_LINK_LIBRARIES(pupa_main
 	-ljpeg
 	-lz
 	-lglog
-	-liniparser
 	-lpthread
 	-lm
 	-ldl
@@ -71,4 +60,4 @@ TARGET_LINK_LIBRARIES(pupa_main
 
 
 
-INSTALL(TARGETS pupa_main RUNTIME DESTINATION bin)
+INSTALL(TARGETS dvs_view RUNTIME DESTINATION bin)
