@@ -8,12 +8,12 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/live555/Ba
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/appmain/lib/${CHIP}/include/live555/groupsock)
 
 INCLUDE_DIRECTORIES(
-	../log
-	../utils
-	../modules
-	../appconfig
-	../common
-	../account
+	../../log
+	../../utils
+	../../modules
+	../../appconfig
+	../../common
+	../dvs_common
 	../lib/hi3536c/include/live555
 	../lib/hi3536c/include/live555/UsageEnviroment
 	../lib/hi3536c/include/live555/liveMedia

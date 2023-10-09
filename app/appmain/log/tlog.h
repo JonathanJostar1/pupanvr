@@ -13,7 +13,7 @@ class TLog
 {
 public:
     static TLog *getInstance();
-    bool log_init();
+    bool log_init(const char* logAppFlag);
 
 private:
     TLog();

@@ -29,9 +29,9 @@ TLog::~TLog()
 
 }
 
-bool TLog::log_init()
+bool TLog::log_init(const char* logAppFlag)
 {
-    const char* parameters = "APPMAIN";
+    const char* parameters = logAppFlag;
 
     FLAGS_logtostderr = true;
     FLAGS_stop_logging_if_full_disk = true;

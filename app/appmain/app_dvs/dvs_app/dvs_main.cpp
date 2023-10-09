@@ -3,7 +3,7 @@
 
 #include "tlog.h"
 #include "TAppComm.h"
-#include "TAppGlobalConfig.h"
+#include "TDvsAppConfig.h"
 #include "TRecordManage.h"
 #include "git_log_version_number.h"
 
@@ -12,7 +12,7 @@
 int sys_init()
 {
 	/**日记初始化*/
-	TLog::getInstance()->log_init();
+	TLog::getInstance()->log_init("DVS_APP");
 	LOG(INFO) << "系统初始化开始" << endl;
 
 	LOG(INFO) << "软件版本:" << TAppComm::getAppVersion() << endl;
@@ -20,8 +20,8 @@ int sys_init()
 	LOG(INFO) << "GIT信息:" << TAppComm::getAppGitVersionInfo() << endl;
 
 	/**配置初始化*/
-	TAppGlobalConfig::getInstance()->load();
-	TAppGlobalConfig::getInstance()->save();
+	TDvsAppConfig::getInstance()->load();
+	TDvsAppConfig::getInstance()->save();
 
 	return 0;
 }

@@ -7,7 +7,6 @@
 
 #include "TRecordManage.h"
 #include "tlog.h"
-#include "TAccount.h"
 
 #include<unistd.h>
 
@@ -36,7 +35,6 @@ TRecordManage::~TRecordManage()
 
 bool TRecordManage::sysRecordInit()
 {
-	TAccount::getInstance();
 
 	return true;
 }

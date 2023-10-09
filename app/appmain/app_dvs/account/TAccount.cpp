@@ -2,7 +2,7 @@
 
 #include "TAccount.h"
 #include "tlog.h"
-#include "TAppGlobalConfig.h"
+#include "TDvsAppConfig.h"
 
 TAccount* TAccount::m_instance = NULL;
 

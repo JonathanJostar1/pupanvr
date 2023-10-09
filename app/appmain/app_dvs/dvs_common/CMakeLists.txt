@@ -6,15 +6,21 @@ INCLUDE_DIRECTORIES(
 )
 
 INCLUDE_DIRECTORIES(
-	../log
-	../utils
+	../../log
+	../../utils
+	../../common
+	../../appconfig
+	../dvs_common
 )
 
-SET(COMMON_SRC
-	
+SET(DVS_COMMON_SRC
+	TAppComm.h
+	TAppComm.cpp
+	TDvsAppConfig.h
+	TDvsAppConfig.cpp
 )
 
 
-ADD_LIBRARY(common STATIC 				
-	${COMMON_SRC}
+ADD_LIBRARY(dvs_common STATIC 				
+	${DVS_COMMON_SRC}
 )

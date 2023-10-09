@@ -2,26 +2,26 @@
 #include<unistd.h>
 
 #include "tlog.h"
-#include "TAppComm.h"
-#include "TAppGlobalConfig.h"
 #include "git_log_version_number.h"
-
+#include "TViewConfig.h"
 #include "hal_media.h"
 #include "view_main.h"
 
 int sys_init()
 {
 	/**日记初始化*/
-	TLog::getInstance()->log_init();
-	LOG(INFO) << "系统初始化开始" << endl;
+	TLog::getInstance()->log_init("DVS_VIEW");
+	LOG(INFO) << "DVS View系统初始化开始" << endl;
 
-	LOG(INFO) << "软件版本:" << TAppComm::getAppVersion() << endl;
-	LOG(INFO) << "编译信息:" << TAppComm::getAppBuildDataInfo() << endl;
+/*
+	LOG(INFO) << "DVS View软件版本:" << TAppComm::getAppVersion() << endl;
+	LOG(INFO) << "DVS View编译信息:" << TAppComm::getAppBuildDataInfo() << endl;
 	LOG(INFO) << "GIT信息:" << TAppComm::getAppGitVersionInfo() << endl;
+*/
 
 	/**配置初始化*/
-	TAppGlobalConfig::getInstance()->load();
-	TAppGlobalConfig::getInstance()->save();
+	TViewConfig::getInstance()->load();
+	TViewConfig::getInstance()->save();
 
 	return 0;
 }

@@ -6,10 +6,11 @@ INCLUDE_DIRECTORIES(
 )
 
 INCLUDE_DIRECTORIES(
-	../log
-	../utils
-	../common
-	../appconfig
+	../../log
+	../../utils
+	../../common
+	../../appconfig
+	../dvs_common
 )
 
 SET(ACCOUNT_SRC
